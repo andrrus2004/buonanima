@@ -11,20 +11,20 @@ def load_image(name, colorkey=None):
     return image
 
 
-class Creature(pygame.sprite.Sprite):
-    image = load_image("field/gg.png")
-
-    def __init__(self, group):
-        super().__init__(group)
-        self.image = Creature.image
-        self.rect = self.image.get_rect()
-        self.rect.x = 250
-        self.rect.y = 250
-        self.press = False
-
-    def update(self, x, y):
-        if not pygame.sprite.spritecollideany(self, walls):
-            self.rect = self.rect.move(x, y)
+# class Creature(pygame.sprite.Sprite):
+#     image = load_image("field/gg.png")
+#
+#     def __init__(self, group):
+#         super().__init__(group)
+#         self.image = Creature.image
+#         self.rect = self.image.get_rect()
+#         self.rect.x = 250
+#         self.rect.y = 250
+#         self.press = False
+#
+#     def update(self, x, y):
+#         if not pygame.sprite.spritecollideany(self, walls):
+#             self.rect = self.rect.move(x, y)
 
 
 class Object(pygame.sprite.Sprite):
@@ -178,59 +178,59 @@ if __name__ == '__main__':
     all_sprites = pygame.sprite.Group()
     walls = pygame.sprite.Group()
     rooms = pygame.sprite.Group()
-    hero = pygame.sprite.Group()
-    gg = Creature(hero)
+    # hero = pygame.sprite.Group()
+    # gg = Creature(hero)
 
     game = Field()
     running = True
-    TIMER = pygame.USEREVENT + 1
-    pygame.time.set_timer(TIMER, 1)
+    # TIMER = pygame.USEREVENT + 1
+    # pygame.time.set_timer(TIMER, 1)
     screen.fill((255, 255, 255))
-    x, y = 0, 0
-    right, left, up, down = False, False, False, False
+    # x, y = 0, 0
+    # right, left, up, down = False, False, False, False
     while running:
         for event in pygame.event.get():
-            if event.type == pygame.MOUSEMOTION:
-                coords = event.pos
-                deltax = (coords[0] - gg.rect.x) // 2
-                deltay = (coords[1] - gg.rect.y) // 2
-                game.startx = 50 - deltax
-                game.starty = 50 - deltay
-                gg.rect.x = gg.rect.x - deltax
-                gg.rect.y = gg.rect.y - deltay
-                print(gg.rect.x)
-            if event.type == pygame.KEYDOWN:
-                if event.key == 273:
-                    down = True
-                elif event.key == 274:
-                    up = True
-                elif event.key == 275:
-                    right = True
-                elif event.key == 276:
-                    left = True
-            if event.type == pygame.KEYUP:
-                if event.key == 273:
-                    down = False
-                elif event.key == 274:
-                    up = False
-                elif event.key == 275:
-                    right = False
-                elif event.key == 276:
-                    left = False
-            if event.type == TIMER:
-                if right:
-                    game.startx -= 1
-                if left:
-                    game.startx += 1
-                if up:
-                    game.starty -= 1
-                if down:
-                    game.starty += 1
-                screen.fill(pygame.Color('white'))
+            # if event.type == pygame.MOUSEMOTION:
+            #     coords = event.pos
+            #     deltax = (coords[0] - gg.rect.x) // 2
+            #     deltay = (coords[1] - gg.rect.y) // 2
+            #     game.startx = 50 - deltax
+            #     game.starty = 50 - deltay
+            #     gg.rect.x = gg.rect.x - deltax
+            #     gg.rect.y = gg.rect.y - deltay
+            #     print(gg.rect.x)
+            # if event.type == pygame.KEYDOWN:
+            #     if event.key == 273:
+            #         down = True
+            #     elif event.key == 274:
+            #         up = True
+            #     elif event.key == 275:
+            #         right = True
+            #     elif event.key == 276:
+            #         left = True
+            # if event.type == pygame.KEYUP:
+            #     if event.key == 273:
+            #         down = False
+            #     elif event.key == 274:
+            #         up = False
+            #     elif event.key == 275:
+            #         right = False
+            #     elif event.key == 276:
+            #         left = False
+            # if event.type == TIMER:
+            #     if right:
+            #         game.startx -= 1
+            #     if left:
+            #         game.startx += 1
+            #     if up:
+            #         game.starty -= 1
+            #     if down:
+            #         game.starty += 1
+            #     screen.fill(pygame.Color('white'))
             if event.type == pygame.QUIT:
                 running = False
         game.render(screen)
         all_sprites.draw(screen)
-        hero.draw(screen)
+        # hero.draw(screen)
         pygame.display.flip()
     pygame.quit()
