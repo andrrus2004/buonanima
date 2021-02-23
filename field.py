@@ -61,7 +61,7 @@ class VWall(Object):
     def __init__(self):
         super().__init__()
         self.set_barrier(True)
-        self.set_image('vertical_wall.png')
+        self.set_image('field/vertical_wall.png')
         self.set_group(walls)
 
 
@@ -69,7 +69,7 @@ class HWall(Object):
     def __init__(self):
         super().__init__()
         self.set_barrier(True)
-        self.set_image('horizontal_wall.png')
+        self.set_image('field/horizontal_wall.png')
         self.set_group(walls)
 
 
@@ -77,7 +77,7 @@ class WNWall(Object):
     def __init__(self):
         super().__init__()
         self.set_barrier(True)
-        self.set_image('wn_wall.png')
+        self.set_image('field/wn_wall.png')
         self.set_group(walls)
 
 
@@ -85,7 +85,7 @@ class NEWall(Object):
     def __init__(self):
         super().__init__()
         self.set_barrier(True)
-        self.set_image('ne_wall.png')
+        self.set_image('field/ne_wall.png')
         self.set_group(walls)
 
 
@@ -93,7 +93,7 @@ class ESWall(Object):
     def __init__(self):
         super().__init__()
         self.set_barrier(True)
-        self.set_image('es_wall.png')
+        self.set_image('field/es_wall.png')
         self.set_group(walls)
 
 
@@ -101,7 +101,7 @@ class SWWall(Object):
     def __init__(self):
         super().__init__()
         self.set_barrier(True)
-        self.set_image('sw_wall.png')
+        self.set_image('field/sw_wall.png')
         self.set_group(walls)
 
 
@@ -109,7 +109,7 @@ class WoodenRoom(Object):
     def __init__(self):
         super().__init__()
         self.set_size(140, 140)
-        self.set_image('wooden_room.png')
+        self.set_image('field/wooden_room.png')
         self.set_group(rooms)
 
 
