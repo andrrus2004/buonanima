@@ -154,7 +154,6 @@ class WoodenRoom(Object):
         self.set_group(rooms)
 
 
-
 class Field:
     def __init__(self, file=None):
         self.width = 9

@@ -115,7 +115,7 @@ class ESWWall(Object):
         self.set_group(walls)
 
 
-class NESall(Object):
+class NESWall(Object):
     def __init__(self):
         super().__init__()
         self.set_barrier(True)
