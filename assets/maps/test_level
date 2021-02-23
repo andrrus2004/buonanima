@@ -1,0 +1,9 @@
+[[WNWall(), HWall(),      HWall(), HWall(), HWall(), HWall(), HWall(), HWall(), NEWall(), None, ],
+ [VWall(),  WoodenRoom(), None,    None,    None,    None,    None,    None,    VWall(),  None, ],
+ [VWall(),  None,         None,    None,    None,    None,    None,    None,    VWall(),  None, ],
+ [VWall(),  None,         None,    None,    None,    None,    None,    None,    VWall(),  None, ],
+ [VWall(),  None,         None,    None,    None,    None,    None,    None,    VWall(),  None, ],
+ [VWall(),  None,         None,    None,    None,    None,    None,    None,    VWall(),  None, ],
+ [VWall(),  None,         None,    None,    None,    None,    None,    None,    VWall(),  None, ],
+ [VWall(),  None,         None,    None,    None,    None,    None,    None,    VWall(),  None, ],
+ [SWWall(), HWall(),      HWall(), HWall(), None,    HWall(), HWall(), HWall(), ESWall()]]

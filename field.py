@@ -1,3 +1,4 @@
+# from objects import *
 import pygame
 import sys
 import os
@@ -9,22 +10,6 @@ def load_image(name, colorkey=None):
         return False
     image = pygame.image.load(fullname)
     return image
-
-
-# class Creature(pygame.sprite.Sprite):
-#     image = load_image("field/gg.png")
-#
-#     def __init__(self, group):
-#         super().__init__(group)
-#         self.image = Creature.image
-#         self.rect = self.image.get_rect()
-#         self.rect.x = 250
-#         self.rect.y = 250
-#         self.press = False
-#
-#     def update(self, x, y):
-#         if not pygame.sprite.spritecollideany(self, walls):
-#             self.rect = self.rect.move(x, y)
 
 
 class Object(pygame.sprite.Sprite):
@@ -121,12 +106,53 @@ class SWWall(Object):
         self.set_group(walls)
 
 
+class ESWWall(Object):
+    def __init__(self):
+        super().__init__()
+        self.set_barrier(True)
+        self.set_image('field/esw_wall.png')
+        self.set_group(walls)
+
+
+class NESWall(Object):
+    def __init__(self):
+        super().__init__()
+        self.set_barrier(True)
+        self.set_image('field/nes_wall.png')
+        self.set_group(walls)
+
+
+class SWNWall(Object):
+    def __init__(self):
+        super().__init__()
+        self.set_barrier(True)
+        self.set_image('field/swn_wall.png')
+        self.set_group(walls)
+
+
+class WNEWall(Object):
+    def __init__(self):
+        super().__init__()
+        self.set_barrier(True)
+        self.set_image('field/wne_wall.png')
+        self.set_group(walls)
+
+
+class NESWWall(Object):
+    def __init__(self):
+        super().__init__()
+        self.set_barrier(True)
+        self.set_image('field/nesw_wall.png')
+        self.set_group(walls)
+
+
 class WoodenRoom(Object):
     def __init__(self):
         super().__init__()
         self.set_size(140, 140)
         self.set_image('field/wooden_room.png')
         self.set_group(rooms)
+
 
 
 class Field:
@@ -136,17 +162,29 @@ class Field:
         self.cell_size = 20
         self.startx, self.starty = 50, 50
         if file is None:
-            self.board = [[WNWall(), HWall(),      HWall(), HWall(), HWall(), HWall(), HWall(), HWall(), NEWall()],
-                          [VWall(),  WoodenRoom(), None,    None,    None,    None,    None,    None,    VWall()],
-                          [VWall(),  None,         None,    None,    None,    None,    None,    None,    VWall()],
-                          [VWall(),  None,         None,    None,    None,    None,    None,    None,    VWall()],
-                          [VWall(),  None,         None,    None,    None,    None,    None,    None,    VWall()],
-                          [VWall(),  None,         None,    None,    None,    None,    None,    None,    VWall()],
-                          [VWall(),  None,         None,    None,    None,    None,    None,    None,    VWall()],
-                          [VWall(),  None,         None,    None,    None,    None,    None,    None,    VWall()],
-                          [SWWall(), HWall(),      HWall(), HWall(), None,    HWall(), HWall(), HWall(), ESWall()]]
+            self.board = [[WNWall(), HWall(),      HWall(), HWall(), HWall(), HWall(), HWall(), HWall(), NEWall(),  None,    WNWall(),  HWall(), HWall(), HWall(), HWall(), HWall(), HWall(), HWall(), HWall(), HWall(), HWall(), HWall(), HWall(), NEWall()],
+                          [VWall(),  WoodenRoom(), None,    None,    None,    None,    None,    None,    VWall(),   None,    VWall(),   None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    VWall()],
+                          [VWall(),  None,         None,    None,    None,    None,    None,    None,    VWall(),   None,    VWall(),   None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    VWall()],
+                          [VWall(),  None,         None,    None,    None,    None,    None,    None,    VWall(),   None,    VWall(),   None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    VWall()],
+                          [VWall(),  None,         None,    None,    None,    None,    None,    None,    VWall(),   None,    VWall(),   None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    VWall()],
+                          [VWall(),  None,         None,    None,    None,    None,    None,    None,    VWall(),   None,    VWall(),   None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    VWall()],
+                          [VWall(),  None,         None,    None,    None,    None,    None,    None,    VWall(),   None,    VWall(),   None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    VWall()],
+                          [VWall(),  None,         None,    None,    None,    None,    None,    None,    VWall(),   None,    VWall(),   None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    VWall()],
+                          [NESWall(), HWall(),     HWall(), HWall(), None,    HWall(), HWall(), HWall(), WNEWall(), HWall(), SWNWall(), None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    VWall()],
+                          [VWall(),  None,         None,    None,    None,    None,    None,    None,    None,      None,    VWall(),   None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    VWall()],
+                          [VWall(),  None,         None,    None,    None,    None,    None,    None,    None,      None,    None,      None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    VWall()],
+                          [VWall(),  None,         None,    None,    None,    None,    None,    None,    None,      None,    None,      None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    VWall()],
+                          [VWall(),  None,         None,    None,    None,    None,    None,    None,    None,      None,    VWall(),   None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    VWall()],
+                          [SWWall(), HWall(),      HWall(), HWall(), HWall(), HWall(), HWall(), HWall(), HWall(),   HWall(), SWNWall(), None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    VWall()],
+                          [None,     None,         None,    None,    None,    None,    None,    None,    None,      None,    VWall(),   None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    VWall()],
+                          [None,     None,         None,    None,    None,    None,    None,    None,    None,      None,    VWall(),   None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    VWall()],
+                          [None,     None,         None,    None,    None,    None,    None,    None,    None,      None,    VWall(),   None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    VWall()],
+                          [None,     None,         None,    None,    None,    None,    None,    None,    None,      None,    VWall(),   None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    VWall()],
+                          [None,     None,         None,    None,    None,    None,    None,    None,    None,      None,    SWWall(),  HWall(), HWall(), HWall(), HWall(), HWall(), HWall(), HWall(), HWall(), HWall(), HWall(), HWall(), HWall(), ESWall()]]
         else:
             pass
+        self.width = len(self.board[0])
+        self.height = len(self.board)
 
     def get_cell(self, cell_x, cell_y):
         try:
@@ -178,59 +216,17 @@ if __name__ == '__main__':
     all_sprites = pygame.sprite.Group()
     walls = pygame.sprite.Group()
     rooms = pygame.sprite.Group()
-    # hero = pygame.sprite.Group()
-    # gg = Creature(hero)
 
     game = Field()
+    print(str(game.board))
+
     running = True
-    # TIMER = pygame.USEREVENT + 1
-    # pygame.time.set_timer(TIMER, 1)
     screen.fill((255, 255, 255))
-    # x, y = 0, 0
-    # right, left, up, down = False, False, False, False
     while running:
         for event in pygame.event.get():
-            # if event.type == pygame.MOUSEMOTION:
-            #     coords = event.pos
-            #     deltax = (coords[0] - gg.rect.x) // 2
-            #     deltay = (coords[1] - gg.rect.y) // 2
-            #     game.startx = 50 - deltax
-            #     game.starty = 50 - deltay
-            #     gg.rect.x = gg.rect.x - deltax
-            #     gg.rect.y = gg.rect.y - deltay
-            #     print(gg.rect.x)
-            # if event.type == pygame.KEYDOWN:
-            #     if event.key == 273:
-            #         down = True
-            #     elif event.key == 274:
-            #         up = True
-            #     elif event.key == 275:
-            #         right = True
-            #     elif event.key == 276:
-            #         left = True
-            # if event.type == pygame.KEYUP:
-            #     if event.key == 273:
-            #         down = False
-            #     elif event.key == 274:
-            #         up = False
-            #     elif event.key == 275:
-            #         right = False
-            #     elif event.key == 276:
-            #         left = False
-            # if event.type == TIMER:
-            #     if right:
-            #         game.startx -= 1
-            #     if left:
-            #         game.startx += 1
-            #     if up:
-            #         game.starty -= 1
-            #     if down:
-            #         game.starty += 1
-            #     screen.fill(pygame.Color('white'))
             if event.type == pygame.QUIT:
                 running = False
         game.render(screen)
         all_sprites.draw(screen)
-        # hero.draw(screen)
         pygame.display.flip()
     pygame.quit()
