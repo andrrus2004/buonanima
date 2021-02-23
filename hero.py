@@ -10,7 +10,7 @@ from useful_functions import load_image
 
 class Hero(pygame.sprite.Sprite):
 
-    image_standart = load_image("hero/car2.png")
+    image_standart = load_image("hero/creature.png")
 
     def __init__(self, *group):
         super().__init__(*group)
@@ -24,6 +24,13 @@ class Hero(pygame.sprite.Sprite):
         self.health_current = self.health_max * self.health_proc   # здоровье в настоящем времени
 
         self.hands = None   # предмет в руках
+
+        self.move_up = True    # можно ли пойти вверх
+        self.move_down = True    # можно ли пойти вниз
+        self.move_right = True    # можно ли пойти вправо
+        self.move_left = True    # можно ли пойти влево
+
+        self.step = 10    # один шаг
 
 
     # -------МЕТОДЫ НАСТРОЙКИ ГЕРОЯ ПРИ ГЕНЕРАЦИИ---------
@@ -52,6 +59,16 @@ class Hero(pygame.sprite.Sprite):
         '''его пока не существует)'''
         pass
 
+    def move(self):
+        if pygame.key.get_pressed()[pygame.K_UP] and self.move_up:
+            self.rect.y -= self.step
+        if pygame.key.get_pressed()[pygame.K_DOWN] and self.move_down:
+            self.rect.y += self.step
+        if pygame.key.get_pressed()[pygame.K_RIGHT] and self.move_right:
+            self.rect.x += self.step
+        if pygame.key.get_pressed()[pygame.K_LEFT] and self.move_left:
+            self.rect.x -= self.step
+
 
 if __name__ == "__main__":
     pygame.init()
@@ -73,6 +90,7 @@ if __name__ == "__main__":
             if event.type == pygame.QUIT:
                 running = False
         screen.fill((255, 255, 255))
+        hero.move()
         hero_group.draw(screen)
         pygame.display.flip()
         clock.tick(10)
