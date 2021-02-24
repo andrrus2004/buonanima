@@ -10,9 +10,6 @@ import sys
 import os
 
 
-# OBJECTS = list()
-
-
 def load_image(name, colorkey=None):
     fullname = os.path.join('assets', name)
     if not os.path.isfile(fullname):
@@ -31,7 +28,7 @@ class Hero(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.x = 0
         self.rect.y = 0
-        self.mask = pygame.mask.from_surface(self.image)
+        # self.mask = pygame.mask.from_surface(self.image)
 
         self.health_max = 100   # максимальное здоровье в уе
         self.health_proc = 1     # здоровье в частях от целого(роцентах) от 0 до 1
@@ -76,7 +73,6 @@ class Hero(pygame.sprite.Sprite):
 class Object(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__(all_sprites)
-        # OBJECTS.append(self)
 
         # Ширина и высота каждого объекта по умолчанию 20px
         self.width = 20
@@ -116,7 +112,7 @@ class Object(pygame.sprite.Sprite):
                 self.rect = self.image.get_rect()
                 self.rect.x = 0
                 self.rect.y = 0
-                self.mask = pygame.mask.from_surface(self.image)
+                # self.mask = pygame.mask.from_surface(self.image)
                 return True
         return False
 
@@ -329,28 +325,27 @@ class Field:
                     cell.rect.x = x
                     cell.rect.y = y
 
-    # def check(self):
-    #     if pygame.sprite.spritecollideany(hero, barriers) is not None:
-    #         return False
-    #     return True
-
     def move(self, value_px):
         if pygame.key.get_pressed()[pygame.K_UP]:
             self.starty += value_px
-            # if not self.check():
-            #     self.starty += -value_px
+            self.render(screen)
+            if pygame.sprite.spritecollideany(hero, barriers) is not None:
+                self.starty += -value_px
         if pygame.key.get_pressed()[pygame.K_DOWN]:
             self.starty -= value_px
-            # if not self.check():
-            #     self.starty -= -value_px
+            self.render(screen)
+            if pygame.sprite.spritecollideany(hero, barriers) is not None:
+                self.starty -= -value_px
         if pygame.key.get_pressed()[pygame.K_RIGHT]:
             self.startx -= value_px
-            # if not self.check():
-            #     self.startx -= -value_px
+            self.render(screen)
+            if pygame.sprite.spritecollideany(hero, barriers) is not None:
+                self.startx -= -value_px
         if pygame.key.get_pressed()[pygame.K_LEFT]:
             self.startx += value_px
-            # if not self.check():
-            #     self.startx += -value_px
+            self.render(screen)
+            if pygame.sprite.spritecollideany(hero, barriers) is not None:
+                self.startx += -value_px
 
 
 if __name__ == '__main__':
@@ -382,7 +377,6 @@ if __name__ == '__main__':
 
     running = True
     while running:
-        # print(pygame.sprite.spritecollideany(hero, barriers))
         for event in pygame.event.get():
             if event.type == TIMER:
                 game.move(1)
