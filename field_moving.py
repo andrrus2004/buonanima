@@ -18,6 +18,7 @@ def load_image(name, colorkey=None):
     return image
 
 
+# Класс главного героя
 class Hero(pygame.sprite.Sprite):
 
     image_standart = load_image("hero/test_img.png")
@@ -325,26 +326,47 @@ class Field:
                     cell.rect.x = x
                     cell.rect.y = y
 
+    # Функция движения карты, где value_px это значение
+    # на сколько за раз сдвигается карта в пикселях
     def move(self, value_px):
+        # Условие на нажатие стрелки вверх
         if pygame.key.get_pressed()[pygame.K_UP]:
+            # Сдвиг карты на value_px вниз
             self.starty += value_px
             self.render(screen)
+            # Условие, если герой касается какого-либо прямоугольника
             if pygame.sprite.spritecollideany(hero, barriers) is not None:
+                # возвращение карты в исходное состояние
                 self.starty += -value_px
+
+        # Условие на нажатие стрелки вниз
         if pygame.key.get_pressed()[pygame.K_DOWN]:
+            # Сдвиг карты на value_px вверх
             self.starty -= value_px
             self.render(screen)
+            # Условие, если герой касается какого-либо прямоугольника
             if pygame.sprite.spritecollideany(hero, barriers) is not None:
+                # возвращение карты в исходное состояние
                 self.starty -= -value_px
+
+        # Условие на нажатие стрелки вправо
         if pygame.key.get_pressed()[pygame.K_RIGHT]:
+            # Сдвиг карты на value_px влево
             self.startx -= value_px
             self.render(screen)
+            # Условие, если герой касается какого-либо прямоугольника
             if pygame.sprite.spritecollideany(hero, barriers) is not None:
+                # возвращение карты в исходное состояние
                 self.startx -= -value_px
+
+        # Условие на нажатие стрелки влево
         if pygame.key.get_pressed()[pygame.K_LEFT]:
+            # Сдвиг карты на value_px вправо
             self.startx += value_px
             self.render(screen)
+            # Условие, если герой касается какого-либо прямоугольника
             if pygame.sprite.spritecollideany(hero, barriers) is not None:
+                # возвращение карты в исходное состояние
                 self.startx += -value_px
 
 
@@ -367,18 +389,22 @@ if __name__ == '__main__':
     # Создание игрового поля
     game = Field()
 
+    # Создание главного героя в центре экрана
     hero_group = pygame.sprite.Group()
     hero = Hero(all_sprites, hero_group)
     hero.set_place(343, 293)
 
-    TIMER = pygame.USEREVENT + 1
-    pygame.time.set_timer(TIMER, 1)
+    # Создание события, которое срабатывает 1 раз в милисекунду
+    MOVING = pygame.USEREVENT + 1
+    pygame.time.set_timer(MOVING, 1)
     screen.fill(pygame.Color('white'))
 
     running = True
     while running:
         for event in pygame.event.get():
-            if event.type == TIMER:
+            # Условие, если прошлё время и вызвалось событие
+            if event.type == MOVING:
+                # Перемещение карты на 1 пиксель
                 game.move(1)
                 screen.fill(pygame.Color('white'))
 
