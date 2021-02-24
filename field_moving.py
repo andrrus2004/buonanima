@@ -5,6 +5,7 @@
 у меня есть идея как это всё в конце убрать и оставить только класс Object"""
 
 
+from main import *
 import pygame
 import sys
 import os
@@ -370,12 +371,12 @@ class Field:
                 self.startx += -value_px
 
 
-all_sprites = pygame.sprite.Group()
-barriers = pygame.sprite.Group()
-walls = pygame.sprite.Group()
-rooms = pygame.sprite.Group()
-floor = pygame.sprite.Group()
-furniture = pygame.sprite.Group()
+# all_sprites = pygame.sprite.Group()
+# barriers = pygame.sprite.Group()
+# walls = pygame.sprite.Group()
+# rooms = pygame.sprite.Group()
+# floor = pygame.sprite.Group()
+# furniture = pygame.sprite.Group()
 
 if __name__ == '__main__':
     # Создание окна
