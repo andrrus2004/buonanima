@@ -42,6 +42,7 @@ class Object(pygame.sprite.Sprite):
                 self.rect = self.image.get_rect()
                 self.rect.x = 0
                 self.rect.y = 0
+                self.mask = pygame.mask.from_surface(self.image)
                 return True
         return False
 
@@ -239,23 +240,31 @@ class Field:
         if pygame.key.get_pressed()[pygame.K_UP]:
             self.starty += value_px
             self.render()
-            if pygame.sprite.spritecollideany(hero, main.barriers) is not None:
+            crossing = pygame.sprite.spritecollideany(hero, main.barriers)
+            if crossing is not None and \
+                    ('Wall' in crossing.__class__.__name__ or pygame.sprite.collide_mask(hero, crossing)):
                 self.starty += -value_px
 
         if pygame.key.get_pressed()[pygame.K_DOWN]:
             self.starty -= value_px
             self.render()
-            if pygame.sprite.spritecollideany(hero, main.barriers) is not None:
+            crossing = pygame.sprite.spritecollideany(hero, main.barriers)
+            if crossing is not None and \
+                    ('Wall' in crossing.__class__.__name__ or pygame.sprite.collide_mask(hero, crossing)):
                 self.starty -= -value_px
 
         if pygame.key.get_pressed()[pygame.K_RIGHT]:
             self.startx -= value_px
             self.render()
-            if pygame.sprite.spritecollideany(hero, main.barriers) is not None:
+            crossing = pygame.sprite.spritecollideany(hero, main.barriers)
+            if crossing is not None and \
+                    ('Wall' in crossing.__class__.__name__ or pygame.sprite.collide_mask(hero, crossing)):
                 self.startx -= -value_px
 
         if pygame.key.get_pressed()[pygame.K_LEFT]:
             self.startx += value_px
             self.render()
-            if pygame.sprite.spritecollideany(hero, main.barriers) is not None:
+            crossing = pygame.sprite.spritecollideany(hero, main.barriers)
+            if crossing is not None and \
+                    ('Wall' in crossing.__class__.__name__ or pygame.sprite.collide_mask(hero, crossing)):
                 self.startx += -value_px

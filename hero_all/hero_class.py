@@ -13,6 +13,7 @@ class Hero(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.x = 0
         self.rect.y = 0
+        self.mask = pygame.mask.from_surface(self.image)
 
         self.health_max = 100
         self.health_proc = 1
