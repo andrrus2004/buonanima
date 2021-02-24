@@ -1,8 +1,5 @@
-import pygame
-import sys
-import os
 from useful_functions import load_image
-from field_class import Object
+from field_all.field_class import Object
 
 
 class Bullet(Object):
