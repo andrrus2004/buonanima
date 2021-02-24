@@ -18,6 +18,58 @@ def load_image(name, colorkey=None):
     return image
 
 
+# Класс главного героя
+class Hero(pygame.sprite.Sprite):
+
+    image_standart = load_image("hero/test_img.png")
+
+    def __init__(self, *group):
+        super().__init__(*group)
+        self.image = Hero.image_standart
+        self.rect = self.image.get_rect()
+        self.rect.x = 0
+        self.rect.y = 0
+        # self.mask = pygame.mask.from_surface(self.image)
+
+        self.health_max = 100   # максимальное здоровье в уе
+        self.health_proc = 1     # здоровье в частях от целого(роцентах) от 0 до 1
+        self.health_current = self.health_max * self.health_proc   # здоровье в настоящем времени
+
+        self.hands = None   # предмет в руках
+
+        self.move_up = True    # можно ли пойти вверх
+        self.move_down = True    # можно ли пойти вниз
+        self.move_right = True    # можно ли пойти вправо
+        self.move_left = True    # можно ли пойти влево
+
+        self.step = 10    # один шаг
+
+    # -------МЕТОДЫ НАСТРОЙКИ ГЕРОЯ ПРИ ГЕНЕРАЦИИ---------
+
+    # метод смены координат(можно использовать для генерации на карте)
+    def set_place(self, x, y):
+        self.rect.x = x
+        self.rect.y = y
+
+    # метод для изменения информации о здоровье ГГ
+    def set_health(self, health, procents=1):
+        self.health = health
+        self.health_proc = procents
+        self.health_current = self.health_max * self.health_proc
+
+    # помещает предмет в руки ГГ и заменяет спрайт
+    def set_hands(self, item, sprite_path):
+        self.hands = item
+        self.image = load_image(sprite_path)
+    # -----------------------------------------------------------
+
+    # метод для создания объекта пули| args: позиция мыши в момент стрельбы
+    def fire(self, mouse_xy):
+        # создаем объект класса Bullet
+        """его пока не существует)"""
+        pass
+
+
 # Класс объекта на игровом поле
 class Object(pygame.sprite.Sprite):
     def __init__(self):
@@ -61,12 +113,14 @@ class Object(pygame.sprite.Sprite):
                 self.rect = self.image.get_rect()
                 self.rect.x = 0
                 self.rect.y = 0
+                # self.mask = pygame.mask.from_surface(self.image)
                 return True
         return False
 
 
 """ Далее идут отдельные классы для каждого определённого объекта,
 где каждый наследуется от класса Object и задаёт параметры под себя"""
+
 
 # Классы для стен
 class VWall(Object):
@@ -272,6 +326,49 @@ class Field:
                     cell.rect.x = x
                     cell.rect.y = y
 
+    # Функция движения карты, где value_px это значение
+    # на сколько за раз сдвигается карта в пикселях
+    def move(self, value_px):
+        # Условие на нажатие стрелки вверх
+        if pygame.key.get_pressed()[pygame.K_UP]:
+            # Сдвиг карты на value_px вниз
+            self.starty += value_px
+            self.render(screen)
+            # Условие, если герой касается какого-либо прямоугольника
+            if pygame.sprite.spritecollideany(hero, barriers) is not None:
+                # возвращение карты в исходное состояние
+                self.starty += -value_px
+
+        # Условие на нажатие стрелки вниз
+        if pygame.key.get_pressed()[pygame.K_DOWN]:
+            # Сдвиг карты на value_px вверх
+            self.starty -= value_px
+            self.render(screen)
+            # Условие, если герой касается какого-либо прямоугольника
+            if pygame.sprite.spritecollideany(hero, barriers) is not None:
+                # возвращение карты в исходное состояние
+                self.starty -= -value_px
+
+        # Условие на нажатие стрелки вправо
+        if pygame.key.get_pressed()[pygame.K_RIGHT]:
+            # Сдвиг карты на value_px влево
+            self.startx -= value_px
+            self.render(screen)
+            # Условие, если герой касается какого-либо прямоугольника
+            if pygame.sprite.spritecollideany(hero, barriers) is not None:
+                # возвращение карты в исходное состояние
+                self.startx -= -value_px
+
+        # Условие на нажатие стрелки влево
+        if pygame.key.get_pressed()[pygame.K_LEFT]:
+            # Сдвиг карты на value_px вправо
+            self.startx += value_px
+            self.render(screen)
+            # Условие, если герой касается какого-либо прямоугольника
+            if pygame.sprite.spritecollideany(hero, barriers) is not None:
+                # возвращение карты в исходное состояние
+                self.startx += -value_px
+
 
 if __name__ == '__main__':
     # Создание окна
@@ -292,10 +389,25 @@ if __name__ == '__main__':
     # Создание игрового поля
     game = Field()
 
+    # Создание главного героя в центре экрана
+    hero_group = pygame.sprite.Group()
+    hero = Hero(all_sprites, hero_group)
+    hero.set_place(343, 293)
+
+    # Создание события, которое срабатывает 1 раз в милисекунду
+    MOVING = pygame.USEREVENT + 1
+    pygame.time.set_timer(MOVING, 1)
+    screen.fill(pygame.Color('white'))
+
     running = True
     while running:
-        screen.fill((255, 255, 255))
         for event in pygame.event.get():
+            # Условие, если прошлё время и вызвалось событие
+            if event.type == MOVING:
+                # Перемещение карты на 1 пиксель
+                game.move(1)
+                screen.fill(pygame.Color('white'))
+
             if event.type == pygame.QUIT:
                 running = False
 
