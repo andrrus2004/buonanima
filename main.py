@@ -23,7 +23,7 @@ if __name__ == '__main__':
     hero = Hero(main.all_sprites, hero_group)
     hero.set_place(343, 293)
     MOVING = pygame.USEREVENT + 1
-    pygame.time.set_timer(MOVING, 1)
+    pygame.time.set_timer(MOVING, 10)
     screen.fill(pygame.Color('white'))
 
     running = True

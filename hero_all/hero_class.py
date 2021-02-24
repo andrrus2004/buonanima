@@ -1,6 +1,6 @@
 import pygame
 from useful_functions import load_image
-from bullet_all.bullet_class import Bullet
+from bullet_all.bullet_class import *
 import main
 
 

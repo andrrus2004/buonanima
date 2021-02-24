@@ -1,20 +1,16 @@
 # -------------КЛАСС ДЛЯ ГЛАВНОГО ГЕРОЯ---------------
 """Может быть протестирую чуть чуть, но врятли, пока просто набросаю"""
-
-
 import pygame
-import os
-import sys
 from useful_functions import load_image
+from bullet_all.bullet_class import *
+import main
 
 
 class Hero(pygame.sprite.Sprite):
 
-    image_standart = load_image("hero/car2.png")
-
     def __init__(self, *group):
         super().__init__(*group)
-        self.image = Hero.image_standart
+        self.image = load_image("hero/test_img.png")
         self.rect = self.image.get_rect()
         self.rect.x = 0
         self.rect.y = 0
@@ -57,9 +53,8 @@ class Hero(pygame.sprite.Sprite):
 
     # метод для создания объекта пули| args: позиция мыши в момент стрельбы
     def fire(self, mouse_xy):
-        # создаем объект класса Bullet
-        '''его пока не существует)'''
-        pass
+        bullet = Bullet((self.rect.x, self.rect.y), mouse_xy)
+        bullet.set_group(main.bullets)
 
     def move(self):
         if pygame.key.get_pressed()[pygame.K_UP] and self.move_up:
@@ -82,7 +77,7 @@ if __name__ == "__main__":
     hero_group = pygame.sprite.Group()
     hero = Hero(hero_group)
     hero.set_place(50, 50)
-    hero.set_size(200, 300)
+
 
     clock = pygame.time.Clock()
 
