@@ -17,15 +17,15 @@ class Bullet(Object):
         self.sin_x = abs(self.delta_x) / (self.delta_x ** 2 + self.delta_y ** 2) ** 0.5
         self.sin_y = abs(self.delta_y) / (self.delta_x ** 2 + self.delta_y ** 2) ** 0.5
 
-        self.speed_x = int(self.speed * self.sin_x)
-        self.speed_y = int(self.speed * self.sin_y)
+        self.speed_x = self.speed * self.sin_x
+        self.speed_y = self.speed * self.sin_y
 
         self.exist = True
 
     def update(self):
         if self.exist:
             try:
-                self.rect.x += self.speed_x * self.delta_x / abs(self.delta_x)
-                self.rect.y += self.speed_y * self.delta_y / abs(self.delta_y)
+                self.rect.x += round(self.speed_x * self.delta_x / abs(self.delta_x))
+                self.rect.y += round(self.speed_y * self.delta_y / abs(self.delta_y))
             except ZeroDivisionError:
                 pass
