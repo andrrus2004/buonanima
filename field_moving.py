@@ -370,6 +370,13 @@ class Field:
                 self.startx += -value_px
 
 
+all_sprites = pygame.sprite.Group()
+barriers = pygame.sprite.Group()
+walls = pygame.sprite.Group()
+rooms = pygame.sprite.Group()
+floor = pygame.sprite.Group()
+furniture = pygame.sprite.Group()
+
 if __name__ == '__main__':
     # Создание окна
     pygame.init()
@@ -379,12 +386,7 @@ if __name__ == '__main__':
 
     # Группы со спрайтами
     # К группе barriers относится всё, через что нельзя проходить
-    all_sprites = pygame.sprite.Group()
-    barriers = pygame.sprite.Group()
-    walls = pygame.sprite.Group()
-    rooms = pygame.sprite.Group()
-    floor = pygame.sprite.Group()
-    furniture = pygame.sprite.Group()
+
 
     # Создание игрового поля
     game = Field()
