@@ -10,7 +10,7 @@ from useful_functions import load_image
 
 class Hero(pygame.sprite.Sprite):
 
-    image_standart = load_image("hero/creature.png")
+    image_standart = load_image("hero/car2.png")
 
     def __init__(self, *group):
         super().__init__(*group)
@@ -32,9 +32,7 @@ class Hero(pygame.sprite.Sprite):
 
         self.step = 10    # один шаг
 
-
     # -------МЕТОДЫ НАСТРОЙКИ ГЕРОЯ ПРИ ГЕНЕРАЦИИ---------
-
     # метод смены координат(можно использовать для генерации на карте)
     def set_place(self, x, y):
         self.rect.x = x
@@ -50,8 +48,12 @@ class Hero(pygame.sprite.Sprite):
     def set_hands(self, item, sprite_path):
         self.hands = item
         self.image = load_image(sprite_path)
-    # -----------------------------------------------------------
 
+    # зменение размера спрайта
+    def set_size(self, wide, high):
+        self.image = pygame.transform.scale(self.image, (wide, high))
+
+    # -----------------------------------------------------------
 
     # метод для создания объекта пули| args: позиция мыши в момент стрельбы
     def fire(self, mouse_xy):
@@ -80,6 +82,7 @@ if __name__ == "__main__":
     hero_group = pygame.sprite.Group()
     hero = Hero(hero_group)
     hero.set_place(50, 50)
+    hero.set_size(200, 300)
 
     clock = pygame.time.Clock()
 
