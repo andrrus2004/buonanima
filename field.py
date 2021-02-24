@@ -1,4 +1,10 @@
-# from objects import *
+# --------------------КЛАСС С ИГРОВЫМ ПОЛЕМ--------------------
+
+"""Класс Field это класс игрового поля, а класс Object это объекты на этом игровом поле.
+На то, что тут куча отдельных классов для каждого объекта можете не обращать внимание,
+у меня есть идея как это всё в конце убрать и оставить только класс Object"""
+
+
 import pygame
 import sys
 import os
@@ -12,23 +18,30 @@ def load_image(name, colorkey=None):
     return image
 
 
+# Класс объекта на игровом поле
 class Object(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__(all_sprites)
+
+        # Ширина и высота каждого объекта по умолчанию 20px
         self.width = 20
         self.height = 20
+
+        # По умолчанию у объектов нет изображения
         self.image = None
         if self.image is not None:
             self.rect = self.image.get_rect()
             self.rect.x = 0
             self.rect.y = 0
 
+    # Функция для добавления объекта в группу спрайтов
     def set_group(self, group):
         if type(group) == pygame.sprite.Group:
             self.add(group)
             return True
         return False
 
+    # Функция для изменения ширины и высоты объекта
     def set_size(self, width, height):
         try:
             if width >= 0 and height >= 0:
@@ -39,6 +52,7 @@ class Object(pygame.sprite.Sprite):
         except Exception:
             return False
 
+    # Функция установки изображения объекту
     def set_image(self, image_name):
         if type(image_name) == str:
             img = load_image(image_name)
@@ -51,6 +65,10 @@ class Object(pygame.sprite.Sprite):
         return False
 
 
+""" Далее идут отдельные классы для каждого определённого объекта,
+где каждый наследуется от класса Object и задаёт параметры под себя"""
+
+# Классы для стен
 class VWall(Object):
     def __init__(self):
         super().__init__()
@@ -146,6 +164,7 @@ class BPanel(Object):
         self.set_group(floor)
 
 
+# Классы для комнат
 class WoodenRoom(Object):
     def __init__(self):
         super().__init__()
@@ -170,6 +189,7 @@ class ParquetRoom(Object):
         self.set_group(rooms)
 
 
+# Классы для мебели
 class Billiard(Object):
     def __init__(self):
         super().__init__()
@@ -188,12 +208,18 @@ class Poker(Object):
         self.set_group(furniture)
 
 
+# Класс игрового поля
 class Field:
     def __init__(self, file=None):
-        self.width = 9
-        self.height = 9
+        # По умолчанию размер одной клетки 20px
         self.cell_size = 20
+
+        # Значиния, которые показывают от какого x и y начть отрисовку карты
+        # Далее эти значения могут использоваться для движения всей карты
         self.startx, self.starty = 50, 50
+
+        # Матрица с объектами карты задаётся пока в ручную, в будущем сделаю загрузку из файла
+        # и заменю каждый отдельный класс с объектом на словать с параметрами.
         if file is None:
             self.board = [[WNWall(), HWall(),      HWall(),    HWall(), HWall(),  HWall(), HWall(), HWall(), NEWall(),  None,    WNWall(),  HWall(),       HWall(), HWall(), HWall(), HWall(), HWall(), HWall(), HWall(), HWall(), HWall(), HWall(), HWall(), NEWall()],
                           [VWall(),  WoodenRoom(), None,       None,    None,     None,    None,    None,    VWall(),   None,    VWall(),   ParquetRoom(), None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    VWall()],
@@ -216,9 +242,12 @@ class Field:
                           [None,     None,         None,       None,    None,     None,    None,    None,    None,      None,    SWWall(),  HWall(),       HWall(), HWall(), HWall(), HWall(), HWall(), HWall(), HWall(), HWall(), HWall(), HWall(), HWall(), ESWall()]]
         else:
             pass
+
+        # Ширина и высота карты в количестве клеток
         self.width = len(self.board[0])
         self.height = len(self.board)
 
+    # Функция для получения клетки по её координатам
     def get_cell(self, cell_x, cell_y):
         try:
             x = (cell_x - self.startx) // self.cell_size
@@ -228,6 +257,9 @@ class Field:
         except Exception:
             return False
 
+    # Функция для расположения всех объектов карты в нужном порядке.
+    # Она используется в главном игровом цикле, но после неё
+    # всё равно нужно использвать all_sprites.draw(screen)
     def render(self, screen):
         pixel_w = self.width * self.cell_size + self.startx
         pixel_h = self.height * self.cell_size + self.starty
@@ -242,10 +274,14 @@ class Field:
 
 
 if __name__ == '__main__':
+    # Создание окна
     pygame.init()
-    size = width, height = 1200, 600
+    size = width, height = 700, 600
+    pygame.display.set_caption('Игровое поле')
     screen = pygame.display.set_mode(size)
 
+    # Группы со спрайтами
+    # К группе barriers относится всё, через что нельзя проходить
     all_sprites = pygame.sprite.Group()
     barriers = pygame.sprite.Group()
     walls = pygame.sprite.Group()
@@ -253,15 +289,21 @@ if __name__ == '__main__':
     floor = pygame.sprite.Group()
     furniture = pygame.sprite.Group()
 
+    # Создание игрового поля
     game = Field()
 
     running = True
-    screen.fill((255, 255, 255))
     while running:
+        screen.fill((255, 255, 255))
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
+
+        # Расположение объектов карты
         game.render(screen)
+
+        # Отрисовка объектов карты
         all_sprites.draw(screen)
+
         pygame.display.flip()
     pygame.quit()
