@@ -1,10 +1,5 @@
-import pygame
-import sys
-import os
-from hero_class import *
-from field_class import *
-from bullet_class import *
-
+from hero_all.hero_class import *
+from field_all.field_class import *
 
 all_sprites = pygame.sprite.Group()
 hero_group = pygame.sprite.Group()

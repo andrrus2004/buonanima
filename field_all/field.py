@@ -11,7 +11,7 @@ import os
 
 
 def load_image(name, colorkey=None):
-    fullname = os.path.join('assets', name)
+    fullname = os.path.join('../assets', name)
     if not os.path.isfile(fullname):
         return False
     image = pygame.image.load(fullname)
