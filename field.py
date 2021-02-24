@@ -18,7 +18,6 @@ class Object(pygame.sprite.Sprite):
         self.width = 20
         self.height = 20
         self.image = None
-        self.barrier = False
         if self.image is not None:
             self.rect = self.image.get_rect()
             self.rect.x = 0
@@ -51,17 +50,11 @@ class Object(pygame.sprite.Sprite):
                 return True
         return False
 
-    def set_barrier(self, barrier_value):
-        if type(barrier_value) == bool:
-            self.barrier = barrier_value
-            return True
-        return False
-
 
 class VWall(Object):
     def __init__(self):
         super().__init__()
-        self.set_barrier(True)
+        self.set_group(barriers)
         self.set_image('field/vertical_wall.png')
         self.set_group(walls)
 
@@ -69,7 +62,7 @@ class VWall(Object):
 class HWall(Object):
     def __init__(self):
         super().__init__()
-        self.set_barrier(True)
+        self.set_group(barriers)
         self.set_image('field/horizontal_wall.png')
         self.set_group(walls)
 
@@ -77,7 +70,7 @@ class HWall(Object):
 class WNWall(Object):
     def __init__(self):
         super().__init__()
-        self.set_barrier(True)
+        self.set_group(barriers)
         self.set_image('field/wn_wall.png')
         self.set_group(walls)
 
@@ -85,7 +78,7 @@ class WNWall(Object):
 class NEWall(Object):
     def __init__(self):
         super().__init__()
-        self.set_barrier(True)
+        self.set_group(barriers)
         self.set_image('field/ne_wall.png')
         self.set_group(walls)
 
@@ -93,7 +86,7 @@ class NEWall(Object):
 class ESWall(Object):
     def __init__(self):
         super().__init__()
-        self.set_barrier(True)
+        self.set_group(barriers)
         self.set_image('field/es_wall.png')
         self.set_group(walls)
 
@@ -101,7 +94,7 @@ class ESWall(Object):
 class SWWall(Object):
     def __init__(self):
         super().__init__()
-        self.set_barrier(True)
+        self.set_group(barriers)
         self.set_image('field/sw_wall.png')
         self.set_group(walls)
 
@@ -109,7 +102,7 @@ class SWWall(Object):
 class ESWWall(Object):
     def __init__(self):
         super().__init__()
-        self.set_barrier(True)
+        self.set_group(barriers)
         self.set_image('field/esw_wall.png')
         self.set_group(walls)
 
@@ -117,7 +110,7 @@ class ESWWall(Object):
 class NESWall(Object):
     def __init__(self):
         super().__init__()
-        self.set_barrier(True)
+        self.set_group(barriers)
         self.set_image('field/nes_wall.png')
         self.set_group(walls)
 
@@ -125,7 +118,7 @@ class NESWall(Object):
 class SWNWall(Object):
     def __init__(self):
         super().__init__()
-        self.set_barrier(True)
+        self.set_group(barriers)
         self.set_image('field/swn_wall.png')
         self.set_group(walls)
 
@@ -133,7 +126,7 @@ class SWNWall(Object):
 class WNEWall(Object):
     def __init__(self):
         super().__init__()
-        self.set_barrier(True)
+        self.set_group(barriers)
         self.set_image('field/wne_wall.png')
         self.set_group(walls)
 
@@ -141,9 +134,16 @@ class WNEWall(Object):
 class NESWWall(Object):
     def __init__(self):
         super().__init__()
-        self.set_barrier(True)
+        self.set_group(barriers)
         self.set_image('field/nesw_wall.png')
         self.set_group(walls)
+
+
+class BPanel(Object):
+    def __init__(self):
+        super().__init__()
+        self.set_image('field/black_panel.png')
+        self.set_group(floor)
 
 
 class WoodenRoom(Object):
@@ -154,6 +154,40 @@ class WoodenRoom(Object):
         self.set_group(rooms)
 
 
+class StoneRoom(Object):
+    def __init__(self):
+        super().__init__()
+        self.set_size(180, 80)
+        self.set_image('field/stone_room.png')
+        self.set_group(rooms)
+
+
+class ParquetRoom(Object):
+    def __init__(self):
+        super().__init__()
+        self.set_size(240, 340)
+        self.set_image('field/parquet_room.png')
+        self.set_group(rooms)
+
+
+class Billiard(Object):
+    def __init__(self):
+        super().__init__()
+        self.set_group(barriers)
+        self.set_size(100, 61)
+        self.set_image('field/billiard.png')
+        self.set_group(furniture)
+
+
+class Poker(Object):
+    def __init__(self):
+        super().__init__()
+        self.set_group(barriers)
+        self.set_size(152, 146)
+        self.set_image('field/poker_table.png')
+        self.set_group(furniture)
+
+
 class Field:
     def __init__(self, file=None):
         self.width = 9
@@ -161,25 +195,25 @@ class Field:
         self.cell_size = 20
         self.startx, self.starty = 50, 50
         if file is None:
-            self.board = [[WNWall(), HWall(),      HWall(), HWall(), HWall(), HWall(), HWall(), HWall(), NEWall(),  None,    WNWall(),  HWall(), HWall(), HWall(), HWall(), HWall(), HWall(), HWall(), HWall(), HWall(), HWall(), HWall(), HWall(), NEWall()],
-                          [VWall(),  WoodenRoom(), None,    None,    None,    None,    None,    None,    VWall(),   None,    VWall(),   None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    VWall()],
-                          [VWall(),  None,         None,    None,    None,    None,    None,    None,    VWall(),   None,    VWall(),   None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    VWall()],
-                          [VWall(),  None,         None,    None,    None,    None,    None,    None,    VWall(),   None,    VWall(),   None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    VWall()],
-                          [VWall(),  None,         None,    None,    None,    None,    None,    None,    VWall(),   None,    VWall(),   None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    VWall()],
-                          [VWall(),  None,         None,    None,    None,    None,    None,    None,    VWall(),   None,    VWall(),   None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    VWall()],
-                          [VWall(),  None,         None,    None,    None,    None,    None,    None,    VWall(),   None,    VWall(),   None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    VWall()],
-                          [VWall(),  None,         None,    None,    None,    None,    None,    None,    VWall(),   None,    VWall(),   None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    VWall()],
-                          [NESWall(), HWall(),     HWall(), HWall(), None,    HWall(), HWall(), HWall(), WNEWall(), HWall(), SWNWall(), None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    VWall()],
-                          [VWall(),  None,         None,    None,    None,    None,    None,    None,    None,      None,    VWall(),   None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    VWall()],
-                          [VWall(),  None,         None,    None,    None,    None,    None,    None,    None,      None,    None,      None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    VWall()],
-                          [VWall(),  None,         None,    None,    None,    None,    None,    None,    None,      None,    None,      None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    VWall()],
-                          [VWall(),  None,         None,    None,    None,    None,    None,    None,    None,      None,    VWall(),   None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    VWall()],
-                          [SWWall(), HWall(),      HWall(), HWall(), HWall(), HWall(), HWall(), HWall(), HWall(),   HWall(), SWNWall(), None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    VWall()],
-                          [None,     None,         None,    None,    None,    None,    None,    None,    None,      None,    VWall(),   None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    VWall()],
-                          [None,     None,         None,    None,    None,    None,    None,    None,    None,      None,    VWall(),   None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    VWall()],
-                          [None,     None,         None,    None,    None,    None,    None,    None,    None,      None,    VWall(),   None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    VWall()],
-                          [None,     None,         None,    None,    None,    None,    None,    None,    None,      None,    VWall(),   None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    VWall()],
-                          [None,     None,         None,    None,    None,    None,    None,    None,    None,      None,    SWWall(),  HWall(), HWall(), HWall(), HWall(), HWall(), HWall(), HWall(), HWall(), HWall(), HWall(), HWall(), HWall(), ESWall()]]
+            self.board = [[WNWall(), HWall(),      HWall(),    HWall(), HWall(),  HWall(), HWall(), HWall(), NEWall(),  None,    WNWall(),  HWall(),       HWall(), HWall(), HWall(), HWall(), HWall(), HWall(), HWall(), HWall(), HWall(), HWall(), HWall(), NEWall()],
+                          [VWall(),  WoodenRoom(), None,       None,    None,     None,    None,    None,    VWall(),   None,    VWall(),   ParquetRoom(), None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    VWall()],
+                          [VWall(),  None,         None,       None,    None,     None,    None,    None,    VWall(),   None,    VWall(),   None,          None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    VWall()],
+                          [VWall(),  None,         Billiard(), None,    None,     None,    None,    None,    VWall(),   None,    VWall(),   None,          None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    VWall()],
+                          [VWall(),  None,         None,       None,    None,     None,    None,    None,    VWall(),   None,    VWall(),   None,          None,    None,    Poker(), None,    None,    None,    None,    None,    None,    None,    None,    VWall()],
+                          [VWall(),  None,         None,       None,    None,     None,    None,    None,    VWall(),   None,    VWall(),   None,          None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    VWall()],
+                          [VWall(),  None,         None,       None,    None,     None,    None,    None,    VWall(),   None,    VWall(),   None,          None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    VWall()],
+                          [VWall(),  None,         None,       None,    None,     None,    None,    None,    VWall(),   None,    VWall(),   None,          None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    VWall()],
+                          [NESWall(), HWall(),     HWall(),    HWall(), BPanel(), HWall(), HWall(), HWall(), WNEWall(), HWall(), SWNWall(), None,          None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    VWall()],
+                          [VWall(),  StoneRoom(),  None,       None,    None,     None,    None,    None,    None,      None,    VWall(),   None,          None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    VWall()],
+                          [VWall(),  None,         None,       None,    None,     None,    None,    None,    None,      None,    BPanel(),  None,          None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    VWall()],
+                          [VWall(),  None,         None,       None,    None,     None,    None,    None,    None,      None,    BPanel(),  None,          None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    VWall()],
+                          [VWall(),  None,         None,       None,    None,     None,    None,    None,    None,      None,    VWall(),   None,          None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    VWall()],
+                          [SWWall(), HWall(),      HWall(),    HWall(), HWall(),  HWall(), HWall(), HWall(), HWall(),   HWall(), SWNWall(), None,          None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    VWall()],
+                          [None,     None,         None,       None,    None,     None,    None,    None,    None,      None,    VWall(),   None,          None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    VWall()],
+                          [None,     None,         None,       None,    None,     None,    None,    None,    None,      None,    VWall(),   None,          None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    VWall()],
+                          [None,     None,         None,       None,    None,     None,    None,    None,    None,      None,    VWall(),   None,          None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    VWall()],
+                          [None,     None,         None,       None,    None,     None,    None,    None,    None,      None,    VWall(),   None,          None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    None,    VWall()],
+                          [None,     None,         None,       None,    None,     None,    None,    None,    None,      None,    SWWall(),  HWall(),       HWall(), HWall(), HWall(), HWall(), HWall(), HWall(), HWall(), HWall(), HWall(), HWall(), HWall(), ESWall()]]
         else:
             pass
         self.width = len(self.board[0])
@@ -213,11 +247,13 @@ if __name__ == '__main__':
     screen = pygame.display.set_mode(size)
 
     all_sprites = pygame.sprite.Group()
+    barriers = pygame.sprite.Group()
     walls = pygame.sprite.Group()
     rooms = pygame.sprite.Group()
+    floor = pygame.sprite.Group()
+    furniture = pygame.sprite.Group()
 
     game = Field()
-    print(str(game.board))
 
     running = True
     screen.fill((255, 255, 255))
