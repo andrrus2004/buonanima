@@ -10,6 +10,9 @@ import sys
 import os
 
 
+# OBJECTS = list()
+
+
 def load_image(name, colorkey=None):
     fullname = os.path.join('assets', name)
     if not os.path.isfile(fullname):
@@ -28,6 +31,7 @@ class Hero(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.x = 0
         self.rect.y = 0
+        self.mask = pygame.mask.from_surface(self.image)
 
         self.health_max = 100   # максимальное здоровье в уе
         self.health_proc = 1     # здоровье в частях от целого(роцентах) от 0 до 1
@@ -41,7 +45,6 @@ class Hero(pygame.sprite.Sprite):
         self.move_left = True    # можно ли пойти влево
 
         self.step = 10    # один шаг
-
 
     # -------МЕТОДЫ НАСТРОЙКИ ГЕРОЯ ПРИ ГЕНЕРАЦИИ---------
 
@@ -62,28 +65,18 @@ class Hero(pygame.sprite.Sprite):
         self.image = load_image(sprite_path)
     # -----------------------------------------------------------
 
-
     # метод для создания объекта пули| args: позиция мыши в момент стрельбы
     def fire(self, mouse_xy):
         # создаем объект класса Bullet
-        '''его пока не существует)'''
+        """его пока не существует)"""
         pass
-
-    def move(self):
-        if pygame.key.get_pressed()[pygame.K_UP] and self.move_up:
-            self.rect.y -= self.step
-        if pygame.key.get_pressed()[pygame.K_DOWN] and self.move_down:
-            self.rect.y += self.step
-        if pygame.key.get_pressed()[pygame.K_RIGHT] and self.move_right:
-            self.rect.x += self.step
-        if pygame.key.get_pressed()[pygame.K_LEFT] and self.move_left:
-            self.rect.x -= self.step
 
 
 # Класс объекта на игровом поле
 class Object(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__(all_sprites)
+        # OBJECTS.append(self)
 
         # Ширина и высота каждого объекта по умолчанию 20px
         self.width = 20
@@ -123,12 +116,14 @@ class Object(pygame.sprite.Sprite):
                 self.rect = self.image.get_rect()
                 self.rect.x = 0
                 self.rect.y = 0
+                self.mask = pygame.mask.from_surface(self.image)
                 return True
         return False
 
 
 """ Далее идут отдельные классы для каждого определённого объекта,
 где каждый наследуется от класса Object и задаёт параметры под себя"""
+
 
 # Классы для стен
 class VWall(Object):
@@ -334,17 +329,28 @@ class Field:
                     cell.rect.x = x
                     cell.rect.y = y
 
-    def move_up(self, value_px):
-        self.starty -= value_px
+    # def check(self):
+    #     if pygame.sprite.spritecollideany(hero, barriers) is not None:
+    #         return False
+    #     return True
 
-    def move_down(self, value_px):
-        self.starty += value_px
-
-    def move_right(self, value_px):
-        self.startx += value_px
-
-    def move_left(self, value_px):
-        self.startx -= value_px
+    def move(self, value_px):
+        if pygame.key.get_pressed()[pygame.K_UP]:
+            self.starty += value_px
+            # if not self.check():
+            #     self.starty += -value_px
+        if pygame.key.get_pressed()[pygame.K_DOWN]:
+            self.starty -= value_px
+            # if not self.check():
+            #     self.starty -= -value_px
+        if pygame.key.get_pressed()[pygame.K_RIGHT]:
+            self.startx -= value_px
+            # if not self.check():
+            #     self.startx -= -value_px
+        if pygame.key.get_pressed()[pygame.K_LEFT]:
+            self.startx += value_px
+            # if not self.check():
+            #     self.startx += -value_px
 
 
 if __name__ == '__main__':
@@ -367,47 +373,19 @@ if __name__ == '__main__':
     game = Field()
 
     hero_group = pygame.sprite.Group()
-    hero = Hero(hero_group)
-    hero.set_place(300, 300)
+    hero = Hero(all_sprites, hero_group)
+    hero.set_place(343, 293)
 
     TIMER = pygame.USEREVENT + 1
     pygame.time.set_timer(TIMER, 1)
-    x, y = 0, 0
-    right, left, up, down = False, False, False, False
     screen.fill(pygame.Color('white'))
 
     running = True
     while running:
+        # print(pygame.sprite.spritecollideany(hero, barriers))
         for event in pygame.event.get():
-            if event.type == pygame.KEYDOWN:
-                if event.key == 273:
-                    down = True
-                elif event.key == 274:
-                    up = True
-                elif event.key == 275:
-                    right = True
-                elif event.key == 276:
-                    left = True
-
-            if event.type == pygame.KEYUP:
-                if event.key == 273:
-                    down = False
-                elif event.key == 274:
-                    up = False
-                elif event.key == 275:
-                    right = False
-                elif event.key == 276:
-                    left = False
-
             if event.type == TIMER:
-                if right:
-                    game.move_left(1)
-                if left:
-                    game.move_right(1)
-                if up:
-                    game.move_up(1)
-                if down:
-                    game.move_down(1)
+                game.move(1)
                 screen.fill(pygame.Color('white'))
 
             if event.type == pygame.QUIT:
@@ -418,7 +396,6 @@ if __name__ == '__main__':
 
         # Отрисовка объектов карты
         all_sprites.draw(screen)
-        hero_group.draw(screen)
 
         pygame.display.flip()
     pygame.quit()
