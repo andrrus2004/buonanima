@@ -136,8 +136,8 @@ class Bullet(Object):
     def update(self):
         if self.exist:
             try:
-                self.rect.x += self.speed_x * self.delta_x / abs(self.delta_x)
-                self.rect.y += self.speed_y * self.delta_y / abs(self.delta_y)
+                self.rect.x += self.speed_x * self.delta_x // abs(self.delta_x)
+                self.rect.y += self.speed_y * self.delta_y // abs(self.delta_y)
             except ZeroDivisionError:
                 pass
 
