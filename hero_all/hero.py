@@ -1,9 +1,8 @@
 # -------------КЛАСС ДЛЯ ГЛАВНОГО ГЕРОЯ---------------
 """Может быть протестирую чуть чуть, но врятли, пока просто набросаю"""
-import pygame
-from useful_functions import load_image
+from field_all.field_class import *
 from bullet_all.bullet_class import *
-import main
+
 
 
 class Hero(pygame.sprite.Sprite):
@@ -26,7 +25,7 @@ class Hero(pygame.sprite.Sprite):
         self.move_right = True    # можно ли пойти вправо
         self.move_left = True    # можно ли пойти влево
 
-        self.step = 10    # один шаг
+        self.step = 1   # один шаг
 
     # -------МЕТОДЫ НАСТРОЙКИ ГЕРОЯ ПРИ ГЕНЕРАЦИИ---------
     # метод смены координат(можно использовать для генерации на карте)
@@ -68,28 +67,39 @@ class Hero(pygame.sprite.Sprite):
 
 
 if __name__ == "__main__":
+
+    game = Field()
+
     pygame.init()
-    pygame.display.set_caption('ТЕСТ')
-    size = width, height = 400, 400
+    size = width, height = 700, 600
+    pygame.display.set_caption('Игровое поле')
     screen = pygame.display.set_mode(size)
     screen.fill((255, 255, 255))
 
     hero_group = pygame.sprite.Group()
-    hero = Hero(hero_group)
-    hero.set_place(50, 50)
-
-
-    clock = pygame.time.Clock()
+    hero = Hero(main.all_sprites, hero_group)
+    hero.set_place(343, 293)
+    MOVING = pygame.USEREVENT + 1
+    pygame.time.set_timer(MOVING, 10)
+    screen.fill(pygame.Color('white'))
 
     running = True
     while running:
-        pygame.time.delay(100)
         for event in pygame.event.get():
+            if event.type == MOVING:
+                hero.move()
+                main.bullets.update()
+                screen.fill(pygame.Color('white'))
+
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                hero.fire(event.pos)
+
             if event.type == pygame.QUIT:
                 running = False
-        screen.fill((255, 255, 255))
-        hero.move()
-        hero_group.draw(screen)
+
+        main.all_sprites.draw(screen)
+        game.render()
+
+
         pygame.display.flip()
-        clock.tick(10)
-pygame.quit()
+    pygame.quit()

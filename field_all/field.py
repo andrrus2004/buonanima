@@ -18,6 +18,47 @@ def load_image(name, colorkey=None):
     return image
 
 
+class Crosshair(pygame.sprite.Sprite):
+    def __init__(self, group):
+        super().__init__(group)
+
+        self.add(group)
+
+        pygame.mouse.set_visible(False)
+
+        # Ширина и высота каждого объекта по умолчанию 20px
+        self.width = 20
+        self.height = 20
+
+        # По умолчанию у объектов нет изображения
+        self.image = None
+        if self.image is not None:
+            self.rect = self.image.get_rect()
+
+    def set_size(self, width, height):
+        try:
+            if width >= 0 and height >= 0:
+                self.width = width
+                self.height = height
+                return True
+            return False
+        except Exception:
+            return False
+
+    def set_image(self, image_name):
+        if type(image_name) == str:
+            img = load_image(image_name)
+            if type(img) != bool:
+                self.image = img
+                self.rect = self.image.get_rect()
+                return True
+        return False
+
+    def update(self, pos):
+        self.rect.center = pos
+
+
+
 # Класс объекта на игровом поле
 class Object(pygame.sprite.Sprite):
     def __init__(self):
@@ -288,6 +329,9 @@ if __name__ == '__main__':
     rooms = pygame.sprite.Group()
     floor = pygame.sprite.Group()
     furniture = pygame.sprite.Group()
+    crosshair = pygame.sprite.Group()
+    arrow = Crosshair()
+    arrow.set_image('crosshair/crosshair.png')
 
     # Создание игрового поля
     game = Field()
@@ -296,6 +340,9 @@ if __name__ == '__main__':
     while running:
         screen.fill((255, 255, 255))
         for event in pygame.event.get():
+            if pygame.mouse.get_focused():
+                arrow.update(pygame.mouse.get_pos())
+                crosshair.draw(screen)
             if event.type == pygame.QUIT:
                 running = False
 
@@ -304,6 +351,7 @@ if __name__ == '__main__':
 
         # Отрисовка объектов карты
         all_sprites.draw(screen)
+        crosshair.draw(screen)
 
         pygame.display.flip()
     pygame.quit()
