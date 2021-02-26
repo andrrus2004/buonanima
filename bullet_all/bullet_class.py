@@ -1,5 +1,7 @@
 from useful_functions import load_image
-from field_all.field_class import Object
+from field_all.field_class import *
+import pygame
+import main
 
 
 class Bullet(Object):
@@ -29,3 +31,6 @@ class Bullet(Object):
                 self.rect.y += round(self.speed_y * self.delta_y / abs(self.delta_y))
             except ZeroDivisionError:
                 pass
+            if pygame.sprite.spritecollideany(self, main.walls):
+                main.all_sprites.remove(self)
+
