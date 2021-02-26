@@ -3,6 +3,20 @@ from field_all.field_class import *
 from field_all.crosshair_class import *
 
 
+def centrirovanye():
+    perenos_centre = (((arrow.rect.x + hero.rect.x) // 2), (arrow.rect.y + hero.rect.y) // 2)
+    # print('m', pygame.mouse.get_pos())
+    # print('a', absolute_centre)
+    # print('p', perenos_centre)
+    delta = (absolute_centre[0] - perenos_centre[0], absolute_centre[1] - perenos_centre[1])
+    # print('d', delta)
+    # print(hero.rect.x + delta[0], hero.rect.y + delta[1])
+    hero.change_place(*delta)
+    '''Cюда нужно будет вписать функцию для смщения поля.
+       Все клетки поля должны быть смещены также на delta,
+       для того чтобы игрок не двигался относительно поля'''
+
+
 all_sprites = pygame.sprite.Group()
 hero_group = pygame.sprite.Group()
 barriers = pygame.sprite.Group()
@@ -41,6 +55,9 @@ if __name__ == '__main__':
             if pygame.mouse.get_focused():
                 arrow.update(pygame.mouse.get_pos())
 
+                centrirovanye()
+
+
             if event.type == MOVING:
                 game.move(hero, 1)
                 main.bullets.update()
@@ -53,9 +70,17 @@ if __name__ == '__main__':
                 running = False
 
             # центровка камеры по середине отрезка между прицелом и игроком(пока не работает корректно)
-            perenos_centre = (abs((arrow.rect.x - hero.rect.x) // 2), abs((arrow.rect.y - hero.rect.y) // 2))
+            '''perenos_centre = (abs((arrow.rect.x - hero.rect.x) // 2), abs((arrow.rect.y - hero.rect.y) // 2))
             new_centre = [abs(absolute_centre[i] - perenos_centre[i]) for i in range(2)]
-            hero.set_place(new_centre[0], new_centre[1])
+            hero.set_place(new_centre[0], new_centre[1])'''
+
+            '''perenos_centre = ((arrow.rect.x - hero.rect.x // 2), (arrow.rect.y - hero.rect.y) // 2)
+            print('a', absolute_centre)
+            print('p', perenos_centre)
+            delta = (absolute_centre[0] - perenos_centre[0], absolute_centre[1] - perenos_centre[1])
+            print('d', delta)
+            print(hero.rect.x + delta[0], hero.rect.y + delta[1])
+            hero.change_place(*delta)'''
 
         game.render()
 

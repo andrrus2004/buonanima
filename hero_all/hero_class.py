@@ -37,6 +37,10 @@ class Hero(pygame.sprite.Sprite):
     def set_size(self, wide, high):
         self.image = pygame.transform.scale(self.image, (wide, high))
 
+    def change_place(self, dx, dy):
+        self.rect.x += dx
+        self.rect.y += dy
+
     def fire(self, mouse_xy):
         bullet = Bullet((self.rect.x, self.rect.y), mouse_xy)
         bullet.set_group(main.bullets)

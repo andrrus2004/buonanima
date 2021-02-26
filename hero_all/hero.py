@@ -4,7 +4,6 @@ from field_all.field_class import *
 from bullet_all.bullet_class import *
 
 
-
 class Hero(pygame.sprite.Sprite):
 
     def __init__(self, *group):
@@ -49,6 +48,11 @@ class Hero(pygame.sprite.Sprite):
         self.image = pygame.transform.scale(self.image, (wide, high))
 
     # -----------------------------------------------------------
+
+    # метод смены местоположения(используется для центрирования)
+    def change_place(self, dx, dy):
+        self.rect.x += dx
+        self.rect.y += dy
 
     # метод для создания объекта пули| args: позиция мыши в момент стрельбы
     def fire(self, mouse_xy):
