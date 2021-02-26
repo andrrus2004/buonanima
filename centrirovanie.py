@@ -3,7 +3,7 @@ from field_all.field_class import *
 from field_all.crosshair_class import *
 
 
-def centrirovanye():
+def centrirovanye(field):
     perenos_centre = (((arrow.rect.x + hero.rect.x) // 2), (arrow.rect.y + hero.rect.y) // 2)
     # print('m', pygame.mouse.get_pos())
     # print('a', absolute_centre)
@@ -12,9 +12,8 @@ def centrirovanye():
     # print('d', delta)
     # print(hero.rect.x + delta[0], hero.rect.y + delta[1])
     hero.change_place(*delta)
-    '''Cюда нужно будет вписать функцию для смщения поля.
-       Все клетки поля должны быть смещены также на delta,
-       для того чтобы игрок не двигался относительно поля'''
+    game.startx += delta[0]
+    game.starty += delta[1]
 
 
 all_sprites = pygame.sprite.Group()
@@ -55,8 +54,7 @@ if __name__ == '__main__':
             if pygame.mouse.get_focused():
                 arrow.update(pygame.mouse.get_pos())
 
-                centrirovanye()
-
+                centrirovanye(game)
 
             if event.type == MOVING:
                 game.move(hero, 1)
