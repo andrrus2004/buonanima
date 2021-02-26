@@ -33,4 +33,5 @@ class Bullet(Object):
                 pass
             if pygame.sprite.spritecollideany(self, main.walls):
                 main.all_sprites.remove(self)
+                self.exist = False
 
