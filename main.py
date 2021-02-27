@@ -62,6 +62,7 @@ if __name__ == '__main__':
                 hero.fire(pygame.mouse.get_pos())
 
             if event.type == pygame.MOUSEBUTTONDOWN:
+                hero.fire(pygame.mouse.get_pos())
                 fire = True
 
             if event.type == pygame.MOUSEBUTTONUP:
