@@ -27,19 +27,23 @@ if __name__ == '__main__':
     hero_group = pygame.sprite.Group()
     hero = Hero(main.all_sprites, hero_group)
     hero.set_place(343, 293)
+    fire = False
 
     enemy = Enemy(main.all_sprites, main.enemies, main.all_not_hero)
     enemy.set_place(310, 200)
 
     MOVING = pygame.USEREVENT + 1
     pygame.time.set_timer(MOVING, 10)
-    screen.fill(pygame.Color('white'))
+
+    SHOOTING = pygame.USEREVENT + 2
+    pygame.time.set_timer(SHOOTING, 350)
 
     crosshair = pygame.sprite.Group()
     arrow = Crosshair(crosshair)
     arrow.set_image('crosshair/crosshair.png')
     arrow.set_size(20, 20)
 
+    screen.fill(pygame.Color('white'))
     running = True
     while running:
         for event in pygame.event.get():
@@ -54,8 +58,14 @@ if __name__ == '__main__':
                 main.enemies.update()
                 screen.fill(pygame.Color('white'))
 
+            if event.type == SHOOTING and fire:
+                hero.fire(pygame.mouse.get_pos())
+
             if event.type == pygame.MOUSEBUTTONDOWN:
-                hero.fire(event.pos)
+                fire = True
+
+            if event.type == pygame.MOUSEBUTTONUP:
+                fire = False
 
             if event.type == pygame.QUIT:
                 running = False

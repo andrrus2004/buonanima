@@ -15,7 +15,7 @@ class Bullet(Object):
         self.delta_x = mouse_pos[0] - self.rect.x
         self.delta_y = mouse_pos[1] - self.rect.y
 
-        self.speed = 10
+        self.speed = 6
         self.bullet_damage = 5
         self.sin_x = abs(self.delta_x) / (self.delta_x ** 2 + self.delta_y ** 2) ** 0.5
         self.sin_y = abs(self.delta_y) / (self.delta_x ** 2 + self.delta_y ** 2) ** 0.5
