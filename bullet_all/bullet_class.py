@@ -16,6 +16,7 @@ class Bullet(Object):
         self.delta_y = mouse_pos[1] - self.rect.y
 
         self.speed = 10
+        self.bullet_damage = 5
         self.sin_x = abs(self.delta_x) / (self.delta_x ** 2 + self.delta_y ** 2) ** 0.5
         self.sin_y = abs(self.delta_y) / (self.delta_x ** 2 + self.delta_y ** 2) ** 0.5
 
@@ -25,13 +26,15 @@ class Bullet(Object):
         self.exist = True
 
     def update(self):
-        if self.exist:
-            try:
-                self.rect.x += round(self.speed_x * self.delta_x / abs(self.delta_x))
-                self.rect.y += round(self.speed_y * self.delta_y / abs(self.delta_y))
-            except ZeroDivisionError:
-                pass
-            if pygame.sprite.spritecollideany(self, main.walls):
-                main.all_sprites.remove(self)
-                self.exist = False
+        try:
+            self.rect.x += round(self.speed_x * self.delta_x / abs(self.delta_x))
+            self.rect.y += round(self.speed_y * self.delta_y / abs(self.delta_y))
+        except ZeroDivisionError:
+            pass
+        if pygame.sprite.spritecollideany(self, main.walls):
+            pygame.sprite.Sprite.kill(self)
+        elif pygame.sprite.spritecollideany(self, main.enemies):
+            for el in pygame.sprite.spritecollide(self, main.enemies, False):
+                el.taking_damage(self.bullet_damage)
+            pygame.sprite.Sprite.kill(self)
 

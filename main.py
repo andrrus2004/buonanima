@@ -9,6 +9,8 @@ rooms = pygame.sprite.Group()
 floor = pygame.sprite.Group()
 furniture = pygame.sprite.Group()
 bullets = pygame.sprite.Group()
+enemies = pygame.sprite.Group()
+all_not_hero = pygame.sprite.Group()
 
 pygame.init()
 size = width, height = 700, 600

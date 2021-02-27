@@ -239,32 +239,48 @@ class Field:
     def move(self, hero, value_px):
         if pygame.key.get_pressed()[pygame.K_UP]:
             self.starty += value_px
+            for el in main.all_not_hero:
+                el.rect.y += value_px
             self.render()
             crossing = pygame.sprite.spritecollideany(hero, main.barriers)
             if crossing is not None and \
                     ('Wall' in crossing.__class__.__name__ or pygame.sprite.collide_mask(hero, crossing)):
                 self.starty += -value_px
+                for el in main.all_not_hero:
+                    el.rect.y -= value_px
 
         if pygame.key.get_pressed()[pygame.K_DOWN]:
             self.starty -= value_px
+            for el in main.all_not_hero:
+                el.rect.y -= value_px
             self.render()
             crossing = pygame.sprite.spritecollideany(hero, main.barriers)
             if crossing is not None and \
                     ('Wall' in crossing.__class__.__name__ or pygame.sprite.collide_mask(hero, crossing)):
                 self.starty -= -value_px
+                for el in main.all_not_hero:
+                    el.rect.y -= -value_px
 
         if pygame.key.get_pressed()[pygame.K_RIGHT]:
             self.startx -= value_px
+            for el in main.all_not_hero:
+                el.rect.x -= value_px
             self.render()
             crossing = pygame.sprite.spritecollideany(hero, main.barriers)
             if crossing is not None and \
                     ('Wall' in crossing.__class__.__name__ or pygame.sprite.collide_mask(hero, crossing)):
                 self.startx -= -value_px
+                for el in main.all_not_hero:
+                    el.rect.x -= -value_px
 
         if pygame.key.get_pressed()[pygame.K_LEFT]:
             self.startx += value_px
+            for el in main.all_not_hero:
+                el.rect.x += value_px
             self.render()
             crossing = pygame.sprite.spritecollideany(hero, main.barriers)
             if crossing is not None and \
                     ('Wall' in crossing.__class__.__name__ or pygame.sprite.collide_mask(hero, crossing)):
                 self.startx += -value_px
+                for el in main.all_not_hero:
+                    el.rect.x -= value_px
