@@ -19,6 +19,8 @@ class Hero(pygame.sprite.Sprite):
         self.health_proc = 1
         self.health_current = self.health_max * self.health_proc
 
+        self.ammo = 6
+
         self.hands = None
 
     def set_place(self, x, y):
@@ -46,6 +48,4 @@ class Hero(pygame.sprite.Sprite):
             bullet = Bullet((self.rect.x, self.rect.y), mouse_xy)
             bullet.set_group(main.bullets)
             bullet.set_group(main.all_not_hero)
-
-    def stop_fire(self):
-        self.fire = False
+            self.ammo -= 1
