@@ -9,10 +9,12 @@ class Object(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__(main.all_sprites)
 
+        self.shade_value = False
         self.width = 20
         self.height = 20
 
         self.image = None
+        self.base_image = None
         if self.image is not None:
             self.rect = self.image.get_rect()
             self.rect.x = 0
@@ -38,13 +40,25 @@ class Object(pygame.sprite.Sprite):
         if type(image_name) == str:
             img = load_image(image_name)
             if type(img) != bool:
-                self.image = img
-                # self.image.fill(pygame.Color(115, 115, 115), special_flags=pygame.BLEND_RGB_MULT)
+                self.base_image = img
+                self.image = self.base_image.copy()
                 self.rect = self.image.get_rect()
                 self.rect.x = 0
                 self.rect.y = 0
                 self.mask = pygame.mask.from_surface(self.image)
                 return True
+        return False
+
+    def shade(self, value):
+        if type(value) == bool:
+            if value:
+                self.image.fill(pygame.Color(150, 150, 150), special_flags=pygame.BLEND_RGB_MULT)
+                self.mask = pygame.mask.from_surface(self.image)
+            else:
+                self.image = self.base_image.copy()
+                self.mask = pygame.mask.from_surface(self.image)
+            self.shade_value = value
+            return True
         return False
 
 
