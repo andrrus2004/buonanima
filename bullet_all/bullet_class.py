@@ -30,7 +30,7 @@ class Bullet(Object):
             self.rect.x += round(self.speed_x * self.delta_x / abs(self.delta_x))
             self.rect.y += round(self.speed_y * self.delta_y / abs(self.delta_y))
         except ZeroDivisionError:
-            pass
+            pygame.sprite.Sprite.kill(self)
         if pygame.sprite.spritecollideany(self, main.walls):
             pygame.sprite.Sprite.kill(self)
         elif pygame.sprite.spritecollideany(self, main.enemies):

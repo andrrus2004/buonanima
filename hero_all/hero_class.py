@@ -42,6 +42,10 @@ class Hero(pygame.sprite.Sprite):
         self.rect.y += dy
 
     def fire(self, mouse_xy):
-        bullet = Bullet((self.rect.x, self.rect.y), mouse_xy)
-        bullet.set_group(main.bullets)
-        bullet.set_group(main.all_not_hero)
+        if pygame.mouse.get_pressed(num_buttons=3)[0]:
+            bullet = Bullet((self.rect.x, self.rect.y), mouse_xy)
+            bullet.set_group(main.bullets)
+            bullet.set_group(main.all_not_hero)
+
+    def stop_fire(self):
+        self.fire = False

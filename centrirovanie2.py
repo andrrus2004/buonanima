@@ -1,9 +1,10 @@
 from hero_all.hero_class import *
 from field_all.field_class import *
 from field_all.crosshair_class import *
+import main
 
 
-def centrirovanye(field):
+def centrirovanye(field, arrow, hero, absolute_centre):
     perenos_centre = (((arrow.rect.x + hero.rect.x) // 2), (arrow.rect.y + hero.rect.y) // 2)
     # print('m', pygame.mouse.get_pos())
     # print('a', absolute_centre)
@@ -12,8 +13,11 @@ def centrirovanye(field):
     # print('d', delta)
     # print(hero.rect.x + delta[0], hero.rect.y + delta[1])
     hero.change_place(*delta)
-    game.startx += delta[0]
-    game.starty += delta[1]
+    for el in main.all_not_hero:
+        el.rect.x += delta[0]
+        el.rect.y += delta[1]
+    field.startx += delta[0]
+    field.starty += delta[1]
 
 
 all_sprites = pygame.sprite.Group()
@@ -54,7 +58,7 @@ if __name__ == '__main__':
             if pygame.mouse.get_focused():
                 arrow.update(pygame.mouse.get_pos())
 
-                centrirovanye(game)
+                centrirovanye(game, arrow, hero, absolute_centre)
 
             if event.type == MOVING:
                 game.move(hero, 1)
