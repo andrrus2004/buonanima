@@ -5,7 +5,8 @@ import main
 
 
 def centrirovanye(field, arrow, hero, absolute_centre):
-    perenos_centre = (((arrow.rect.x + hero.rect.x) // 2), (arrow.rect.y + hero.rect.y) // 2)
+    # perenos_centre = (((arrow.rect.x + hero.rect.x) // 2), (arrow.rect.y + hero.rect.y) // 2)
+    perenos_centre = (((arrow.rect.x + 2 * hero.rect.x) // 3), (arrow.rect.y + 2 * hero.rect.y) // 3)
     # print('m', pygame.mouse.get_pos())
     # print('a', absolute_centre)
     # print('p', perenos_centre)
