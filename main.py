@@ -87,7 +87,7 @@ if __name__ == '__main__':
             if event.type == ATTACK:
                 for el in main.enemies:
                     if el.attack_check(hero):
-                        el.fire((hero.rect.x, hero.rect.y))
+                        el.fire(hero.rect.center)
 
             if event.type == pygame.MOUSEBUTTONDOWN and hero.ammo > 0:
                 hero.fire(pygame.mouse.get_pos())
