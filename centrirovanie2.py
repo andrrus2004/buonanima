@@ -48,6 +48,7 @@ if __name__ == '__main__':
 
     hero_group = pygame.sprite.Group()
     hero = Hero(main.all_sprites, hero_group)
+    hero.set_size(30, 45)
     hero.set_place(343, 293)
     MOVING = pygame.USEREVENT + 1
     pygame.time.set_timer(MOVING, 10)

@@ -1,19 +1,25 @@
 from useful_functions import load_image
 from field_all.field_class import *
-import pygame
+import pygame as pg
+from pygame.math import Vector2
 import main
 
 
 class Bullet(Object):
-    def __init__(self, creator_pos, mouse_pos):
+    def __init__(self, creator_pos, mouse_pos, n=1):
         super().__init__()
-        self.image = load_image("hero/test_img.png")
+        self.image = load_image("bullets/bullet.png")
+        self.image = pygame.transform.scale(self.image, (10, 20))
+        self.orig = self.image
+
         self.rect = self.image.get_rect()
         self.rect.x = creator_pos[0]
         self.rect.y = creator_pos[1]
 
-        self.delta_x = mouse_pos[0] - self.rect.x
-        self.delta_y = mouse_pos[1] - self.rect.y
+        self.dest_x = mouse_pos[0]
+        self.dest_y = mouse_pos[1]
+        self.delta_x = self.dest_x - self.rect.x
+        self.delta_y = self.dest_y - self.rect.y
 
         self.speed = 6
         self.bullet_damage = 5
@@ -24,6 +30,13 @@ class Bullet(Object):
         self.speed_y = self.speed * self.sin_y
 
         self.exist = True
+
+    def rotate(self):
+        x, y, w, h = self.rect
+        direction = (self.dest_x, self.dest_y) - Vector2(x + w//2, y + h//2)
+        radius, angle = direction.as_polar()
+        self.image = pg.transform.rotate(self.orig, -angle - 90)
+        self.rect = self.image.get_rect(center=self.rect.center)
 
     def update(self):
         try:
