@@ -19,10 +19,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d2511ab2-4e43-4b4f-b65d-ff0c8239cad9" name="Default Changelist" comment="Сделал стреляющих врагов и получение урона главным героем">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="d2511ab2-4e43-4b4f-b65d-ff0c8239cad9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/enemies_class.py" beforeDir="false" afterPath="$PROJECT_DIR$/enemies_class.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -360,7 +359,14 @@
       <option name="project" value="LOCAL" />
       <updated>1614529330152</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Доработал стреляющих врагов">
+      <created>1614530206549</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1614530206549</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -402,29 +408,30 @@
     <MESSAGE value="Собрал класс врагов и центрирование в main" />
     <MESSAGE value="Сделал автоогонь" />
     <MESSAGE value="Сделал стреляющих врагов и получение урона главным героем" />
-    <option name="LAST_COMMIT_MESSAGE" value="Сделал стреляющих врагов и получение урона главным героем" />
+    <MESSAGE value="Доработал стреляющих врагов" />
+    <option name="LAST_COMMIT_MESSAGE" value="Доработал стреляющих врагов" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="424" y="8" key="CommitChangelistDialog2" timestamp="1614529328080">
+    <state x="424" y="8" key="CommitChangelistDialog2" timestamp="1614530205129">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="424" y="8" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1614529328080" />
-    <state width="1515" height="210" key="GridCell.Tab.0.bottom" timestamp="1614530171996">
+    <state x="424" y="8" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1614530205129" />
+    <state width="1515" height="210" key="GridCell.Tab.0.bottom" timestamp="1614531165809">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1614530171996" />
-    <state width="1515" height="210" key="GridCell.Tab.0.center" timestamp="1614530171996">
+    <state width="1515" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1614531165809" />
+    <state width="1515" height="210" key="GridCell.Tab.0.center" timestamp="1614531165809">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1614530171996" />
-    <state width="1515" height="210" key="GridCell.Tab.0.left" timestamp="1614530171995">
+    <state width="1515" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1614531165809" />
+    <state width="1515" height="210" key="GridCell.Tab.0.left" timestamp="1614531165809">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1614530171995" />
-    <state width="1515" height="210" key="GridCell.Tab.0.right" timestamp="1614530171996">
+    <state width="1515" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1614531165809" />
+    <state width="1515" height="210" key="GridCell.Tab.0.right" timestamp="1614531165809">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1614530171996" />
+    <state width="1515" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1614531165809" />
     <state x="481" y="129" key="MultipleFileMergeDialog" timestamp="1614526604965">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -433,10 +440,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="277" y="56" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1614526631250" />
-    <state x="361" y="146" key="Vcs.Push.Dialog.v2" timestamp="1614529332770">
+    <state x="361" y="146" key="Vcs.Push.Dialog.v2" timestamp="1614530208382">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1614529332770" />
+    <state x="361" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1614530208382" />
     <state x="578" y="330" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1614526589179">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

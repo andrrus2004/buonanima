@@ -45,7 +45,8 @@ class Enemy(pygame.sprite.Sprite):
 
     def attack_check(self, hero):
         x1, y1, w1, h1 = hero.rect.x, hero.rect.y, hero.rect.size[0], hero.rect.size[1]
-        x2, y2, w2, h2 = self.rect.x - self.area_w, self.rect.y - self.area_h, 2 * self.area_w, 2 * self.area_h
+        x2, y2, w2, h2 = self.rect.center[0] - self.area_w, self.rect.center[1] - self.area_h,\
+                         2 * self.area_w, 2 * self.area_h
         if x1 + w1 < x2 or y1 + h1 < y2 or y1 > y2 + h2:
             return False
         return True
