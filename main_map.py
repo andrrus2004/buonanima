@@ -1,5 +1,5 @@
 from hero_all.hero_class import *
-from field_all.field_class import *
+from field_all.field_map import *
 from centrirovanie2 import *
 from enemies_class import *
 
@@ -15,8 +15,7 @@ enemies = pygame.sprite.Group()
 all_not_hero = pygame.sprite.Group()
 
 pygame.init()
-# size = width, height = 700, 600
-size = width, height = 2000, 1000
+size = width, height = 700, 600
 absolute_centre = (width // 2, height // 2)
 pygame.display.set_caption('Игровое поле')
 screen = pygame.display.set_mode(size)
@@ -24,6 +23,8 @@ screen = pygame.display.set_mode(size)
 if __name__ == '__main__':
 
     game = Field()
+    game.startx = -225
+    game.starty = -540
 
     hero_group = pygame.sprite.Group()
     hero = Hero(main.all_sprites, hero_group)
