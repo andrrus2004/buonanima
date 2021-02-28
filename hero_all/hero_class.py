@@ -59,20 +59,6 @@ class Hero(pygame.sprite.Sprite):
         self.image = pg.transform.rotate(self.orig, -angle - 90)
         self.rect = self.image.get_rect(center=self.rect.center)
 
-        '''mouse_x, mouse_y = pygame.mouse.get_pos()
-        rel_x, rel_y = mouse_x - self.rect.center[0], mouse_y - self.rect.center[1]
-        nor_x, nor_y = (self.rect.topleft[0] + self.rect.width // 2) - self.rect.center[0], (self.rect.topleft[1] + self.rect.width // 2) - self.rect.center[1]
-        print([rel_x, rel_y, nor_x, nor_y])
-        cursor_v = (rel_x, rel_y)
-        normal_v = (nor_x, nor_y)
-        t = (rel_x * nor_x + rel_y * nor_y) / (((rel_x * rel_x + rel_y * rel_y) ** 0.5) * ((nor_x * nor_x + nor_y * nor_y) * 0.5))
-        if t < 0:
-            t = -t
-        q = 1.5707963267 - round(math.acos(t), 6)
-        print(q)
-        #self.image, self.rect = rot_center(self.image, self.rect, q)'''
-
-
     def fire(self, mouse_xy):
         if pygame.mouse.get_pressed(num_buttons=3)[0]:
             bullet = Bullet((self.rect.x, self.rect.y), mouse_xy, -20)
