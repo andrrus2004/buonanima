@@ -63,7 +63,7 @@ class Hero(pygame.sprite.Sprite):
 
     def fire(self, mouse_xy):
         if pygame.mouse.get_pressed(num_buttons=3)[0]:
-            bullet = Bullet((self.rect.x, self.rect.y), mouse_xy, self, -20)
+            bullet = Bullet((self.rect.center[0], self.rect.center[1]), mouse_xy, self, -20)
             bullet.rotate()
             bullet.set_group(main.bullets)
             bullet.set_group(main.all_not_hero)

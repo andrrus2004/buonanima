@@ -34,7 +34,7 @@ class Enemy(pygame.sprite.Sprite):
         self.area_h = height
 
     def fire(self, mouse_xy):
-        bullet = bullet_all.bullet_class.Bullet((self.rect.x, self.rect.y), mouse_xy, self, -20)
+        bullet = bullet_all.bullet_class.Bullet((self.rect.center[0], self.rect.center[1]), mouse_xy, self, -20)
         bullet.rotate()
         bullet.set_group(main.bullets)
         bullet.set_group(main.all_not_hero)
