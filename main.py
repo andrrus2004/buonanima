@@ -44,7 +44,6 @@ if __name__ == '__main__':
     hero_group = pygame.sprite.Group()
     hero = Hero(main.all_sprites, main.hero_group)
     hero.set_place(343, 293)
-    hero.set_size(-2.5)
     fire = False
 
     enemy = Enemy(main.all_sprites, main.enemies, main.all_not_hero)
