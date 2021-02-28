@@ -42,7 +42,7 @@ if __name__ == '__main__':
     game = Field()
 
     hero_group = pygame.sprite.Group()
-    hero = Hero(main.all_sprites, hero_group)
+    hero = Hero(main.all_sprites, main.hero_group)
     hero.set_place(343, 293)
     hero.set_size(-2.5)
     fire = False
@@ -56,6 +56,9 @@ if __name__ == '__main__':
     RELOAD = pygame.USEREVENT + 2
     pygame.time.set_timer(RELOAD, 3000)
     pygame.event.set_blocked(RELOAD)
+
+    ATTACK = pygame.USEREVENT + 2
+    pygame.time.set_timer(ATTACK, 1500)
 
     crosshair = pygame.sprite.Group()
     arrow = Crosshair(crosshair)
@@ -80,6 +83,11 @@ if __name__ == '__main__':
             if event.type == RELOAD:
                 hero.ammo = 6
                 pygame.event.set_blocked(RELOAD)
+
+            if event.type == ATTACK:
+                for el in main.enemies:
+                    if el.attack_check(hero):
+                        el.fire((hero.rect.x, hero.rect.y))
 
             if event.type == pygame.MOUSEBUTTONDOWN and hero.ammo > 0:
                 hero.fire(pygame.mouse.get_pos())

@@ -20,6 +20,7 @@ class Hero(pygame.sprite.Sprite):
         self.orig = self.image
 
         self.health_max = 100
+        self.health = self.health_max
         self.health_proc = 1
         self.health_current = self.health_max * self.health_proc
 
@@ -61,8 +62,12 @@ class Hero(pygame.sprite.Sprite):
 
     def fire(self, mouse_xy):
         if pygame.mouse.get_pressed(num_buttons=3)[0]:
-            bullet = Bullet((self.rect.x, self.rect.y), mouse_xy, -20)
+            bullet = Bullet((self.rect.x, self.rect.y), mouse_xy, self, -20)
             bullet.rotate()
             bullet.set_group(main.bullets)
             bullet.set_group(main.all_not_hero)
             self.ammo -= 1
+
+    def taking_damage(self, damage):
+        print('hero take damage')
+        self.health -= damage

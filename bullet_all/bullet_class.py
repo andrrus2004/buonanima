@@ -3,10 +3,12 @@ from field_all.field_class import *
 import pygame as pg
 from pygame.math import Vector2
 import main
+import hero_all.hero_class
+import enemies_class
 
 
 class Bullet(Object):
-    def __init__(self, creator_pos, mouse_pos, n=1):
+    def __init__(self, creator_pos, mouse_pos, shooter, n=1):
         super().__init__()
         self.image = load_image("bullets/bullet.png")
         self.image = pygame.transform.scale(self.image, (10, 20))
@@ -29,6 +31,8 @@ class Bullet(Object):
         self.speed_x = self.speed * self.sin_x
         self.speed_y = self.speed * self.sin_y
 
+        self.shooter = shooter
+
         self.exist = True
 
     def rotate(self):
@@ -48,6 +52,12 @@ class Bullet(Object):
             pygame.sprite.Sprite.kill(self)
         elif pygame.sprite.spritecollideany(self, main.enemies):
             for el in pygame.sprite.spritecollide(self, main.enemies, False):
-                el.taking_damage(self.bullet_damage)
-            pygame.sprite.Sprite.kill(self)
+                if isinstance(self.shooter, hero_all.hero_class.Hero):
+                    el.taking_damage(self.bullet_damage)
+                    pygame.sprite.Sprite.kill(self)
+        elif pygame.sprite.spritecollideany(self, main.hero_group):
+            for el in pygame.sprite.spritecollide(self, main.hero_group, False):
+                if isinstance(self.shooter, enemies_class.Enemy):
+                    el.taking_damage(self.bullet_damage)
+                    pygame.sprite.Sprite.kill(self)
 
