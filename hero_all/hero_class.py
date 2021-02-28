@@ -59,6 +59,7 @@ class Hero(pygame.sprite.Sprite):
         radius, angle = direction.as_polar()
         self.image = pg.transform.rotate(self.orig, -angle - 90)
         self.rect = self.image.get_rect(center=self.rect.center)
+        self.mask = pygame.mask.from_surface(self.image)
 
     def fire(self, mouse_xy):
         if pygame.mouse.get_pressed(num_buttons=3)[0]:
