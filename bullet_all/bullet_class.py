@@ -1,19 +1,27 @@
 from useful_functions import load_image
 from field_all.field_class import *
-import pygame
+import pygame as pg
+from pygame.math import Vector2
 import main
+import hero_all.hero_class
+import enemies_class
 
 
 class Bullet(Object):
-    def __init__(self, creator_pos, mouse_pos):
+    def __init__(self, creator_pos, mouse_pos, shooter, n=1):
         super().__init__()
-        self.image = load_image("hero/test_img.png")
+        self.image = load_image("bullets/bullet.png")
+        self.image = pygame.transform.scale(self.image, (10, 20))
+        self.orig = self.image
+
         self.rect = self.image.get_rect()
         self.rect.x = creator_pos[0]
         self.rect.y = creator_pos[1]
 
-        self.delta_x = mouse_pos[0] - self.rect.x
-        self.delta_y = mouse_pos[1] - self.rect.y
+        self.dest_x = mouse_pos[0]
+        self.dest_y = mouse_pos[1]
+        self.delta_x = self.dest_x - self.rect.x
+        self.delta_y = self.dest_y - self.rect.y
 
         self.speed = 6
         self.bullet_damage = 5
@@ -23,7 +31,16 @@ class Bullet(Object):
         self.speed_x = self.speed * self.sin_x
         self.speed_y = self.speed * self.sin_y
 
+        self.shooter = shooter
+
         self.exist = True
+
+    def rotate(self):
+        x, y, w, h = self.rect
+        direction = (self.dest_x, self.dest_y) - Vector2(x + w//2, y + h//2)
+        radius, angle = direction.as_polar()
+        self.image = pg.transform.rotate(self.orig, -angle - 90)
+        self.rect = self.image.get_rect(center=self.rect.center)
 
     def update(self):
         try:
@@ -35,6 +52,12 @@ class Bullet(Object):
             pygame.sprite.Sprite.kill(self)
         elif pygame.sprite.spritecollideany(self, main.enemies):
             for el in pygame.sprite.spritecollide(self, main.enemies, False):
-                el.taking_damage(self.bullet_damage)
-            pygame.sprite.Sprite.kill(self)
+                if isinstance(self.shooter, hero_all.hero_class.Hero):
+                    el.taking_damage(self.bullet_damage)
+                    pygame.sprite.Sprite.kill(self)
+        elif pygame.sprite.spritecollideany(self, main.hero_group):
+            for el in pygame.sprite.spritecollide(self, main.hero_group, False):
+                if isinstance(self.shooter, enemies_class.Enemy):
+                    el.taking_damage(self.bullet_damage)
+                    pygame.sprite.Sprite.kill(self)
 

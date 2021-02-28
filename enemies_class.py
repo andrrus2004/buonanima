@@ -1,6 +1,6 @@
 import pygame
 from useful_functions import load_image
-from bullet_all.bullet_class import *
+import bullet_all.bullet_class
 import main
 
 
@@ -12,7 +12,8 @@ class Enemy(pygame.sprite.Sprite):
         self.image = Enemy.enemy_image
         self.health = 20
         self.rect = self.image.get_rect()
-        self.attack_area_r = 10
+        self.area_w = 100
+        self.area_h = 100
 
     def set_place(self, x, y):
         self.rect.x = x
@@ -28,14 +29,24 @@ class Enemy(pygame.sprite.Sprite):
     def taking_damage(self, damage):
         self.health -= damage
 
-    def set_attack_area(self, radius):
-        self.attack_area_r = radius
+    def set_attack_area(self, width, height):
+        self.area_w = width
+        self.area_h = height
 
     def fire(self, mouse_xy):
-        bullet = Bullet((self.rect.x, self.rect.y), mouse_xy)
+        bullet = bullet_all.bullet_class.Bullet((self.rect.x, self.rect.y), mouse_xy, self, -20)
+        bullet.rotate()
         bullet.set_group(main.bullets)
         bullet.set_group(main.all_not_hero)
 
     def update(self):
         if self.health <= 0:
             pygame.sprite.Sprite.kill(self)
+
+    def attack_check(self, hero):
+        x1, y1, w1, h1 = hero.rect.x, hero.rect.y, hero.rect.size[0], hero.rect.size[1]
+        x2, y2, w2, h2 = self.rect.center[0] - self.area_w, self.rect.center[1] - self.area_h,\
+                         2 * self.area_w, 2 * self.area_h
+        if x1 + w1 < x2 or y1 + h1 < y2 or y1 > y2 + h2:
+            return False
+        return True

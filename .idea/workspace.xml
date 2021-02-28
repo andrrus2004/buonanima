@@ -21,6 +21,7 @@
   <component name="ChangeListManager">
     <list default="true" id="d2511ab2-4e43-4b4f-b65d-ff0c8239cad9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/enemies_class.py" beforeDir="false" afterPath="$PROJECT_DIR$/enemies_class.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,6 +59,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/field_all" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -176,11 +178,11 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.zones" />
-      <item itemvalue="Python.main" />
-      <item itemvalue="Python.enemies" />
       <item itemvalue="Python.centrirovanie2" />
       <item itemvalue="Python.centrirovanie" />
+      <item itemvalue="Python.enemies" />
+      <item itemvalue="Python.main" />
+      <item itemvalue="Python.zones" />
     </list>
     <recent_temporary>
       <list>
@@ -336,7 +338,35 @@
       <option name="project" value="LOCAL" />
       <updated>1614449428423</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Сделал автоогонь">
+      <created>1614455405937</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1614455405937</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Сделал автоогонь">
+      <created>1614456826530</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1614456826530</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Сделал стреляющих врагов и получение урона главным героем">
+      <created>1614529330152</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1614529330152</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Доработал стреляющих врагов">
+      <created>1614530206549</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1614530206549</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -377,36 +407,46 @@
     <MESSAGE value="Сделал класс врагов, доюавил смещение пуль и врагов" />
     <MESSAGE value="Собрал класс врагов и центрирование в main" />
     <MESSAGE value="Сделал автоогонь" />
-    <option name="LAST_COMMIT_MESSAGE" value="Сделал автоогонь" />
+    <MESSAGE value="Сделал стреляющих врагов и получение урона главным героем" />
+    <MESSAGE value="Доработал стреляющих врагов" />
+    <option name="LAST_COMMIT_MESSAGE" value="Доработал стреляющих врагов" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="424" y="8" key="CommitChangelistDialog2" timestamp="1614449427364">
+    <state x="424" y="8" key="CommitChangelistDialog2" timestamp="1614530205129">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="424" y="8" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1614449427364" />
-    <state width="1515" height="210" key="GridCell.Tab.0.bottom" timestamp="1614455372511">
+    <state x="424" y="8" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1614530205129" />
+    <state width="1515" height="210" key="GridCell.Tab.0.bottom" timestamp="1614531165809">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1614455372511" />
-    <state width="1515" height="210" key="GridCell.Tab.0.center" timestamp="1614455372511">
+    <state width="1515" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1614531165809" />
+    <state width="1515" height="210" key="GridCell.Tab.0.center" timestamp="1614531165809">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1614455372511" />
-    <state width="1515" height="210" key="GridCell.Tab.0.left" timestamp="1614455372511">
+    <state width="1515" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1614531165809" />
+    <state width="1515" height="210" key="GridCell.Tab.0.left" timestamp="1614531165809">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1614455372511" />
-    <state width="1515" height="210" key="GridCell.Tab.0.right" timestamp="1614455372511">
+    <state width="1515" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1614531165809" />
+    <state width="1515" height="210" key="GridCell.Tab.0.right" timestamp="1614531165809">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1614455372511" />
-    <state x="361" y="146" key="Vcs.Push.Dialog.v2" timestamp="1614449438374">
+    <state width="1515" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1614531165809" />
+    <state x="481" y="129" key="MultipleFileMergeDialog" timestamp="1614526604965">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1614449438374" />
-    <state x="578" y="330" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1614444239850">
+    <state x="481" y="129" key="MultipleFileMergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1614526604965" />
+    <state x="277" y="56" key="SettingsEditor" timestamp="1614526631250">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="578" y="330" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1614444239850" />
+    <state x="277" y="56" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1614526631250" />
+    <state x="361" y="146" key="Vcs.Push.Dialog.v2" timestamp="1614530208382">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="361" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1614530208382" />
+    <state x="578" y="330" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1614526589179">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="578" y="330" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1614526589179" />
   </component>
 </project>
