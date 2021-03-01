@@ -3,6 +3,7 @@ import sys
 import os
 from useful_functions import load_image
 import main
+from enemies_class import *
 
 
 class Object(pygame.sprite.Sprite):
@@ -277,7 +278,7 @@ class Field:
                           [VWall(),   None,          None,    None,    None,    None,    None,    None,    None,    None,    None,     None,     None,     None,     None,    None,    None,    None,    None,    None,    None,    None,    VWall(),   None,         None,     None,     None,    None,     None,     None,     None,     None,    None,        None,    None,    VWall()],
                           [VWall(),   None,          None,    None,    None,    None,    None,    None,    None,    None,    None,     None,     None,     None,     None,    None,    None,    None,    None,    None,    None,    None,    NESWall(), HWall(),      HWall(),  HWall(),  HWall(), None,     None,     None,     None,     HWall(), HWall(),     HWall(), HWall(), SWNWall()],
                           [VWall(),   None,          None,    None,    None,    None,    None,    None,    None,    None,    None,     None,     None,     None,     None,    None,    None,    None,    None,    None,    None,    None,    VWall(),   GardenRoom(), None,     None,     None,    None,     None,     None,     None,     None,    None,        None,    None,    VWall()],
-                          [VWall(),   None,          None,    None,    None,    None,    None,    None,    None,    None,    None,     None,     None,     None,     None,    None,    None,    None,    None,    None,    None,    None,    VWall(),   None,         None,     None,     None,    None,     None,     None,     None,     None,    None,        None,    None,    VWall()],
+                          [VWall(),   None,          None,    None,    None,    None,    None,    None,    None,    None,    None,     None,     None,     None,     None,    None,    None,    None,    None,    None,    None,    None,    VWall(),   None,         None,     None,     Enemy(main.all_sprites, main.enemies, main.all_not_hero),    None,     None,     None,     None,     None,    None,        None,    None,    VWall()],
                           [VWall(),   None,          None,    None,    None,    None,    None,    None,    None,    None,    None,     None,     None,     None,     None,    None,    None,    None,    None,    None,    None,    None,    VWall(),   None,         None,     None,     None,    None,     None,     None,     None,     None,    None,        None,    None,    VWall()],
                           [VWall(),   None,          None,    None,    None,    None,    None,    None,    None,    None,    None,     None,     None,     None,     None,    None,    None,    None,    None,    None,    None,    None,    VWall(),   None,         None,     None,     None,    None,     None,     None,     None,     None,    None,        None,    None,    VWall()],
                           [VWall(),   None,          None,    None,    None,    None,    None,    None,    None,    None,    None,     None,     None,     None,     None,    None,    None,    None,    None,    None,    None,    None,    VWall(),   None,         None,     Shrub1(), None,    None,     None,     None,     None,     None,    Shrub1(),    None,    None,    VWall()],

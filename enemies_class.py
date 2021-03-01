@@ -7,7 +7,7 @@ import main
 
 
 class Enemy(pygame.sprite.Sprite):
-    enemy_image = load_image("hero/gg.png")
+    enemy_image = load_image("hero/gg1.png")
 
     def __init__(self, *group):
         super().__init__(*group)
