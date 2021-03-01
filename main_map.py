@@ -2,6 +2,7 @@ from hero_all.hero_class import *
 from field_all.field_map import *
 from centrirovanie2 import *
 from enemies_class import *
+from random import shuffle
 
 
 class Heart(pygame.sprite.Sprite):
