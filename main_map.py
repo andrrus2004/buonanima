@@ -111,6 +111,7 @@ if __name__ == '__main__':
     hero_group = pygame.sprite.Group()
     hero = Hero(main.all_sprites, main.hero_group)
     hero.set_size(2)
+    hero.set_health(3, 100)
     hero.set_place(343, 293)
     fire = False
 
@@ -168,6 +169,8 @@ if __name__ == '__main__':
 
             if event.type == pygame.QUIT:
                 running = False
+
+        inter.update()
 
         hero.rotate()
 

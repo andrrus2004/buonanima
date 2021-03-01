@@ -11,7 +11,6 @@ class Bullet(Object):
     def __init__(self, creator_pos, mouse_pos, shooter, n=1):
         super().__init__()
         self.image = load_image("bullets/bullet.png")
-        # self.image = pygame.transform.scale(self.image, (10, 20))
         self.orig = self.image
 
         self.rect = self.image.get_rect()
@@ -24,7 +23,7 @@ class Bullet(Object):
         self.delta_y = self.dest_y - self.rect.y
 
         self.speed = 15
-        self.bullet_damage = 5
+        self.bullet_damage = 1
         self.sin_x = abs(self.delta_x) / (self.delta_x ** 2 + self.delta_y ** 2) ** 0.5
         self.sin_y = abs(self.delta_y) / (self.delta_x ** 2 + self.delta_y ** 2) ** 0.5
 
