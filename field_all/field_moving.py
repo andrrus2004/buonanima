@@ -329,7 +329,7 @@ class Field:
     # на сколько за раз сдвигается карта в пикселях
     def move(self, value_px):
         # Условие на нажатие стрелки вверх
-        if pygame.key.get_pressed()[pygame.K_UP]:
+        if pygame.key.get_pressed()[pygame.K_w]:
             # Сдвиг карты на value_px вниз
             self.starty += value_px
             self.render(screen)
@@ -339,7 +339,7 @@ class Field:
                 self.starty += -value_px
 
         # Условие на нажатие стрелки вниз
-        if pygame.key.get_pressed()[pygame.K_DOWN]:
+        if pygame.key.get_pressed()[pygame.K_s]:
             # Сдвиг карты на value_px вверх
             self.starty -= value_px
             self.render(screen)
@@ -349,7 +349,7 @@ class Field:
                 self.starty -= -value_px
 
         # Условие на нажатие стрелки вправо
-        if pygame.key.get_pressed()[pygame.K_RIGHT]:
+        if pygame.key.get_pressed()[pygame.K_d]:
             # Сдвиг карты на value_px влево
             self.startx -= value_px
             self.render(screen)
@@ -359,7 +359,7 @@ class Field:
                 self.startx -= -value_px
 
         # Условие на нажатие стрелки влево
-        if pygame.key.get_pressed()[pygame.K_LEFT]:
+        if pygame.key.get_pressed()[pygame.K_a]:
             # Сдвиг карты на value_px вправо
             self.startx += value_px
             self.render(screen)

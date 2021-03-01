@@ -84,7 +84,6 @@ if __name__ == '__main__':
                 pygame.event.set_blocked(RELOAD)
 
             if event.type == ATTACK:
-                print('уйбу')
                 for el in main.enemies:
                     if el.attack_check(hero):
                         el.rotate(hero.get_pose())

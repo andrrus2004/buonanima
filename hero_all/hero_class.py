@@ -10,6 +10,7 @@ class Hero(pygame.sprite.Sprite):
     def __init__(self, *group):
         super().__init__(*group)
         self.image = load_image("hero/gg.png", -1).convert()
+        self.fire_img = load_image("hero/gg_fire.png", -1).convert()
         colorkey = self.image.get_at((0, 0))
         self.image.set_colorkey(colorkey)
         self.rect = self.image.get_rect()
@@ -46,6 +47,7 @@ class Hero(pygame.sprite.Sprite):
         w, h = self.rect[-2:]
         if n >= 0:
             self.image = pygame.transform.scale(self.image, (round(w * n), round(h * n)))
+            self.orig = self.image
             return
         self.image = pygame.transform.scale(self.image, (round(w // abs(n)), round(h // abs(n))))
         self.orig = self.image
@@ -69,6 +71,7 @@ class Hero(pygame.sprite.Sprite):
             bullet.set_group(main.bullets)
             bullet.set_group(main.all_not_hero)
             self.ammo -= 1
+
 
     def get_pose(self):
         return self.rect.centerx, self.rect.centery

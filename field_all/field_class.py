@@ -237,7 +237,10 @@ class Field:
                     cell.rect.y = y
 
     def move(self, hero, value_px):
-        if pygame.key.get_pressed()[pygame.K_UP]:
+
+        if pygame.key.get_pressed()[pygame.K_f]:
+            value_px += 1
+        if pygame.key.get_pressed()[pygame.K_w]:
             self.starty += value_px
             for el in main.all_not_hero:
                 el.rect.y += value_px
@@ -245,11 +248,12 @@ class Field:
             crossing = pygame.sprite.spritecollideany(hero, main.barriers)
             if crossing is not None and \
                     ('Wall' in crossing.__class__.__name__ or pygame.sprite.collide_mask(hero, crossing)):
+                print(crossing.rect)
                 self.starty += -value_px
                 for el in main.all_not_hero:
                     el.rect.y -= value_px
 
-        if pygame.key.get_pressed()[pygame.K_DOWN]:
+        if pygame.key.get_pressed()[pygame.K_s]:
             self.starty -= value_px
             for el in main.all_not_hero:
                 el.rect.y -= value_px
@@ -261,7 +265,7 @@ class Field:
                 for el in main.all_not_hero:
                     el.rect.y -= -value_px
 
-        if pygame.key.get_pressed()[pygame.K_RIGHT]:
+        if pygame.key.get_pressed()[pygame.K_d]:
             self.startx -= value_px
             for el in main.all_not_hero:
                 el.rect.x -= value_px
@@ -273,7 +277,7 @@ class Field:
                 for el in main.all_not_hero:
                     el.rect.x -= -value_px
 
-        if pygame.key.get_pressed()[pygame.K_LEFT]:
+        if pygame.key.get_pressed()[pygame.K_a]:
             self.startx += value_px
             for el in main.all_not_hero:
                 el.rect.x += value_px
