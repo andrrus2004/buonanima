@@ -19,7 +19,8 @@ class Hero(pygame.sprite.Sprite):
 
         self.orig = self.image
 
-        self.health_max = 100
+        # self.health_max = 100
+        self.health_max = 3
         self.health = self.health_max
         self.health_proc = 1
         self.health_current = self.health_max * self.health_proc
