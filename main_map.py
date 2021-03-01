@@ -145,7 +145,6 @@ if __name__ == '__main__':
                 screen.fill(pygame.Color('white'))
 
             if event.type == RELOAD:
-                print(123)
                 hero.ammo = 6
                 pygame.event.set_blocked(RELOAD)
                 inter.update()
