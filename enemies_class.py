@@ -1,11 +1,13 @@
 import pygame
+from pygame.math import Vector2
 from useful_functions import load_image
 import bullet_all.bullet_class
+import hero_all.hero_class
 import main
 
 
 class Enemy(pygame.sprite.Sprite):
-    enemy_image = load_image("hero/test_img.png")
+    enemy_image = load_image("hero/gg.png")
 
     def __init__(self, *group):
         super().__init__(*group)
@@ -14,6 +16,7 @@ class Enemy(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.area_w = 100
         self.area_h = 100
+        self.orig = self.image
 
     def set_place(self, x, y):
         self.rect.x = x
@@ -50,3 +53,11 @@ class Enemy(pygame.sprite.Sprite):
         if x1 + w1 < x2 or y1 + h1 < y2 or y1 > y2 + h2:
             return False
         return True
+
+    def rotate(self, dest):
+        x, y, w, h = self.rect
+        direction = dest - Vector2(x + w//2, y + h//2)
+        radius, angle = direction.as_polar()
+        self.image = pygame.transform.rotate(self.orig, -angle - 90)
+        self.rect = self.image.get_rect(center=self.rect.center)
+        self.mask = pygame.mask.from_surface(self.image)
