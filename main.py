@@ -1,7 +1,7 @@
 from hero_all.hero_class import *
 from field_all.field_class import *
 from centrirovanie2 import *
-from enemies_class import *
+from enemies_class import Enemy
 
 
 def load_image(name, colorkey=None):
@@ -56,7 +56,7 @@ if __name__ == '__main__':
     pygame.time.set_timer(RELOAD, 3000)
     pygame.event.set_blocked(RELOAD)
 
-    ATTACK = pygame.USEREVENT + 2
+    ATTACK = pygame.USEREVENT + 3
     pygame.time.set_timer(ATTACK, 1500)
 
     crosshair = pygame.sprite.Group()
@@ -84,8 +84,10 @@ if __name__ == '__main__':
                 pygame.event.set_blocked(RELOAD)
 
             if event.type == ATTACK:
+                print('уйбу')
                 for el in main.enemies:
                     if el.attack_check(hero):
+                        el.rotate(hero.get_pose())
                         el.fire(hero.rect.center)
 
             if event.type == pygame.MOUSEBUTTONDOWN and hero.ammo > 0:
