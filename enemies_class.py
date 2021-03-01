@@ -12,7 +12,7 @@ class Enemy(pygame.sprite.Sprite):
     def __init__(self, *group):
         super().__init__(*group)
         self.image = Enemy.enemy_image
-        self.health = 20
+        self.health = 2
         self.rect = self.image.get_rect()
         self.area_w = 100
         self.area_h = 100
