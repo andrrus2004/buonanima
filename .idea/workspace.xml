@@ -20,16 +20,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d2511ab2-4e43-4b4f-b65d-ff0c8239cad9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/assets/field/result/cabinet_room.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/field/result/map_res.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/field/result/wals_res.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/buonanima.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/buonanima.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_24_02_2021_21_28__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_24_02_2021_21_28__Default_Changelist_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/field/result/hallway_room.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/field/result/hallway_room.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/field_all/field_map.py" beforeDir="false" afterPath="$PROJECT_DIR$/field_all/field_map.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main_map.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_map.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hero_all/hero_class.py" beforeDir="false" afterPath="$PROJECT_DIR$/hero_all/hero_class.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/interface_class.py" beforeDir="false" afterPath="$PROJECT_DIR$/interface_class.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,7 +83,7 @@
       <recent name="C:\Users\SweetLemon356\PycharmProjects\Pygame_buonanima\assets\hero" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.main_map">
+  <component name="RunManager" selected="Python.main">
     <configuration name="centrirovanie" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="buonanima" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -207,9 +203,9 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.main" />
         <item itemvalue="Python.main_map" />
         <item itemvalue="Python.field_map" />
-        <item itemvalue="Python.main" />
         <item itemvalue="Python.centrirovanie2" />
         <item itemvalue="Python.centrirovanie" />
       </list>
@@ -227,7 +223,7 @@
       </list>
     </option>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="false" />
+  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -394,7 +390,21 @@
       <option name="project" value="LOCAL" />
       <updated>1614534092103</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Сделал так, чтобы нельзя было ходить через врагов, но криво">
+      <created>1614622783107</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1614622783107</updated>
+    </task>
+    <task id="LOCAL-00024" summary="обновление hp врага">
+      <created>1614623884947</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1614623884947</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -415,12 +425,13 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
@@ -438,24 +449,50 @@
     <MESSAGE value="Сделал стреляющих врагов и получение урона главным героем" />
     <MESSAGE value="Доработал стреляющих врагов" />
     <MESSAGE value="Изменил текстуры героя и пуль" />
-    <option name="LAST_COMMIT_MESSAGE" value="Изменил текстуры героя и пуль" />
+    <MESSAGE value="Сделал так, чтобы нельзя было ходить через врагов, но криво" />
+    <MESSAGE value="обновление hp врага" />
+    <option name="LAST_COMMIT_MESSAGE" value="обновление hp врага" />
   </component>
-  <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/buonanima$bulet_class.coverage" NAME="bulet_class Coverage Results" MODIFIED="1614186613129" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/buonanima$test.coverage" NAME="test Coverage Results" MODIFIED="1614372552127" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/buonanima$centrirovanie2.coverage" NAME="centrirovanie2 Coverage Results" MODIFIED="1614360813015" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/buonanima$field_class.coverage" NAME="field_class Coverage Results" MODIFIED="1614529655357" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/field_all" />
-    <SUITE FILE_PATH="coverage/buonanima$field_map.coverage" NAME="field_map Coverage Results" MODIFIED="1614546135603" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/field_all" />
-    <SUITE FILE_PATH="coverage/buonanima$field.coverage" NAME="field Coverage Results" MODIFIED="1614183429587" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/buonanima$bullet.coverage" NAME="bullet Coverage Results" MODIFIED="1614190187250" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/buonanima$centrirovanie.coverage" NAME="centrirovanie Coverage Results" MODIFIED="1614360479891" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/buonanima$zones.coverage" NAME="zones Coverage Results" MODIFIED="1614433456344" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/buonanima$main_map.coverage" NAME="main_map Coverage Results" MODIFIED="1614547300238" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/buonanima$zones2.coverage" NAME="zones2 Coverage Results" MODIFIED="1614435292920" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/buonanima$hero.coverage" NAME="hero Coverage Results" MODIFIED="1614182533561" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/buonanima$field_moving.coverage" NAME="field_moving Coverage Results" MODIFIED="1614188817134" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/buonanima$field_zones.coverage" NAME="field_zones Coverage Results" MODIFIED="1614362542190" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/field_all" />
-    <SUITE FILE_PATH="coverage/buonanima$bullet_class__1_.coverage" NAME="bullet_class (1) Coverage Results" MODIFIED="1614190200710" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/buonanima$main.coverage" NAME="main Coverage Results" MODIFIED="1614542120533" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+  <component name="WindowStateProjectService">
+    <state x="424" y="8" key="CommitChangelistDialog2" timestamp="1614623884023">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="424" y="8" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1614623884023" />
+    <state x="108" y="218" width="1350" height="638" key="DiffContextDialog" timestamp="1614622449646">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="108" y="218" width="1350" height="638" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1614622449646" />
+    <state width="1515" height="210" key="GridCell.Tab.0.bottom" timestamp="1614627535611">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1515" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1614627535611" />
+    <state width="1515" height="210" key="GridCell.Tab.0.center" timestamp="1614627535610">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1515" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1614627535610" />
+    <state width="1515" height="210" key="GridCell.Tab.0.left" timestamp="1614627535610">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1515" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1614627535610" />
+    <state width="1515" height="210" key="GridCell.Tab.0.right" timestamp="1614627535610">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1515" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1614627535610" />
+    <state x="481" y="129" key="MultipleFileMergeDialog" timestamp="1614622482851">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="481" y="129" key="MultipleFileMergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1614622482851" />
+    <state x="277" y="56" key="SettingsEditor" timestamp="1614620910536">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="277" y="56" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1614620910536" />
+    <state x="361" y="146" key="Vcs.Push.Dialog.v2" timestamp="1614623886106">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="361" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1614623886106" />
+    <state x="578" y="330" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1614623305078">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="578" y="330" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1614623305078" />
   </component>
 </project>

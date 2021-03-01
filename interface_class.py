@@ -1,3 +1,8 @@
+import main
+from useful_functions import load_image
+import pygame
+
+
 class Heart(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__(main.all_sprites)
@@ -53,7 +58,7 @@ class Interface:
             self.ammo[i].rect.x = self.width - 15 - startx - i * 20
             self.ammo[i].rect.y = starty
 
-    def update(self):
+    def update(self, hero):
         ammo_new = hero.ammo
         health_new = hero.health
         for i in range(len(self.ammo) - 1, ammo_new - 1, -1):

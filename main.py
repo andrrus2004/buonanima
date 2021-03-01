@@ -1,7 +1,9 @@
 from hero_all.hero_class import *
 from field_all.field_class import *
+from field_all.field_map import *
 from centrirovanie2 import *
 from enemies_class import Enemy
+from interface_class import *
 
 
 def load_image(name, colorkey=None):
@@ -40,14 +42,22 @@ screen = pygame.display.set_mode(size)
 if __name__ == '__main__':
 
     game = Field()
+    game.startx = -225
+    game.starty = -540
 
     hero_group = pygame.sprite.Group()
     hero = Hero(main.all_sprites, main.hero_group)
+    hero.set_size(2)
+    hero.set_health(3, 100)
     hero.set_place(343, 293)
     fire = False
 
-    enemy = Enemy(main.all_sprites, main.enemies, main.all_not_hero)
-    enemy.set_place(310, 200)
+    inter = Interface(hero, width, height)
+    inter.place_items()
+    enemies_pos = [(317, 3), (391, 4)]
+    #for el in enemies_pos:
+        #enemy = Enemy(main.all_sprites, main.enemies, main.all_not_hero)
+        #enemy.set_place(el[0], el[1])
 
     MOVING = pygame.USEREVENT + 1
     pygame.time.set_timer(MOVING, 10)
@@ -98,7 +108,8 @@ if __name__ == '__main__':
             if event.type == pygame.QUIT:
                 running = False
 
-        hero.update()
+        inter.update(hero)
+
         hero.rotate()
 
         game.render()
