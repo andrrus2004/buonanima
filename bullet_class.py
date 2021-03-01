@@ -1,9 +1,8 @@
-from useful_functions import load_image
-from field_all.field_class import *
+from field_class import *
 import pygame as pg
 from pygame.math import Vector2
 import main
-import hero_all.hero_class
+import hero_class
 import enemies_class
 
 
@@ -51,7 +50,7 @@ class Bullet(Object):
             pygame.sprite.Sprite.kill(self)
         elif pygame.sprite.spritecollideany(self, main.enemies):
             for el in pygame.sprite.spritecollide(self, main.enemies, False):
-                if isinstance(self.shooter, hero_all.hero_class.Hero):
+                if isinstance(self.shooter, hero_class.Hero):
                     el.taking_damage(self.bullet_damage)
                     pygame.sprite.Sprite.kill(self)
         elif pygame.sprite.spritecollideany(self, main.hero_group):

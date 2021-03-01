@@ -144,27 +144,11 @@ class BPanel(Object):
         self.set_group(main.floor)
 
 
-class WoodenRoom(Object):
-    def __init__(self):
-        super().__init__()
-        self.set_size(140, 140)
-        self.set_image('field/wooden_room.png')
-        self.set_group(main.rooms)
-
-
-class StoneRoom(Object):
-    def __init__(self):
-        super().__init__()
-        self.set_size(180, 80)
-        self.set_image('field/stone_room.png')
-        self.set_group(main.rooms)
-
-
 class PorchRoom(Object):
     def __init__(self):
         super().__init__()
         self.set_size(180, 80)
-        self.set_image('field/result/porch_room.png')
+        self.set_image('field/porch_room.png')
         self.set_group(main.rooms)
 
 
@@ -172,22 +156,14 @@ class GardenRoom(Object):
     def __init__(self):
         super().__init__()
         self.set_size(960, 2400)
-        self.set_image('field/result/garden_room.png')
+        self.set_image('field/garden_room.png')
         self.set_group(main.rooms)
 
 
 class HallRoom(Object):
     def __init__(self):
         super().__init__()
-        self.set_image('field/result/hallway_room.png')
-        self.set_group(main.rooms)
-
-
-class ParquetRoom(Object):
-    def __init__(self):
-        super().__init__()
-        self.set_size(240, 340)
-        self.set_image('field/parquet_room.png')
+        self.set_image('field/hallway_room.png')
         self.set_group(main.rooms)
 
 
@@ -195,7 +171,7 @@ class CabinetRoom(Object):
     def __init__(self):
         super().__init__()
         self.set_size(240, 340)
-        self.set_image('field/result/cabinet_room.png')
+        self.set_image('field/cabinet_room.png')
         self.set_group(main.rooms)
 
 
@@ -203,7 +179,7 @@ class Shrub1(Object):
     def __init__(self):
         super().__init__()
         self.set_group(main.barriers)
-        self.set_image('field/result/shrub1.png')
+        self.set_image('field/shrub1.png')
         self.set_group(main.furniture)
 
 
@@ -211,25 +187,7 @@ class Shrub2(Object):
     def __init__(self):
         super().__init__()
         self.set_group(main.barriers)
-        self.set_image('field/result/shrub2.png')
-        self.set_group(main.furniture)
-
-
-class Billiard(Object):
-    def __init__(self):
-        super().__init__()
-        self.set_group(main.barriers)
-        self.set_size(100, 61)
-        self.set_image('field/billiard.png')
-        self.set_group(main.furniture)
-
-
-class Poker(Object):
-    def __init__(self):
-        super().__init__()
-        self.set_group(main.barriers)
-        self.set_size(152, 146)
-        self.set_image('field/poker_table.png')
+        self.set_image('field/shrub2.png')
         self.set_group(main.furniture)
 
 
@@ -288,7 +246,6 @@ class Field:
                           [None,      None,          None,    None,    None,    None,    None,    None,    None,    None,    None,     None,     None,     None,     None,    None,    None,    None,    None,    None,    None,    None,    SWWall(),  HWall(),      HWall(),  HWall(),  HWall(), HWall(),  HWall(),  HWall(),  HWall(),  HWall(), HWall(),     HWall(), HWall(), ESWall()]]
         else:
             pass
-
         self.width = len(self.board[0])
         self.height = len(self.board)
 

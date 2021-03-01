@@ -1,12 +1,8 @@
-import pygame as pg
-from useful_functions import load_image
-from pygame.math import Vector2
-from bullet_all.bullet_class import *
+from bullet_class import *
 import main
 
 
 class Hero(pygame.sprite.Sprite):
-
     def __init__(self, *group):
         super().__init__(*group)
         self.image = load_image("hero/gg.png", -1).convert()
@@ -19,7 +15,6 @@ class Hero(pygame.sprite.Sprite):
 
         self.orig = self.image
 
-        # self.health_max = 100
         self.health_max = 3
         self.health = self.health_max
         self.health_proc = 1
@@ -60,8 +55,6 @@ class Hero(pygame.sprite.Sprite):
         direction = pg.mouse.get_pos() - Vector2(x + w//2, y + h//2)
         radius, angle = direction.as_polar()
         self.image = pg.transform.rotate(self.orig, -angle - 90)
-        # self.rect = self.image.get_rect(center=self.rect.center)
-        # self.mask = pygame.mask.from_surface(self.image)
 
     def fire(self, mouse_xy):
         if pygame.mouse.get_pressed(num_buttons=3)[0]:
@@ -75,11 +68,4 @@ class Hero(pygame.sprite.Sprite):
         return self.rect.centerx, self.rect.centery
 
     def taking_damage(self, damage):
-        print('hero take damage')
         self.health -= damage
-        print(self.health)
-
-    def update(self):
-        if self.health == 0:
-            pass
-            # вызов функции интерфейса
