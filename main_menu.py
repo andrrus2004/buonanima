@@ -42,6 +42,13 @@ def end_game():
     shade.fill(pygame.Color(50, 50, 50))
     shade.set_alpha(100)
     inter.update()
+    color = pygame.Color('white')
+    font = pygame.font.Font(None, 100)
+    text = font.render('Конец игры', True, color)
+    text_x = width // 2 - text.get_width() // 2
+    text_y = height // 2 - text.get_height() // 2
+    return text, (text_x, text_y)
+
 
 
 class Heart(pygame.sprite.Sprite):
@@ -257,10 +264,11 @@ if __name__ == '__main__':
         if not is_menu:
             if hero.health <= 0:
                 is_end = True
-                end_game()
+                res = end_game()
                 main.all_sprites.draw(screen)
-                crosshair.draw(screen)
+                # crosshair.draw(screen)
                 screen.blit(shade, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+                screen.blit(*res)
             else:
                 inter.update()
                 hero.rotate()
