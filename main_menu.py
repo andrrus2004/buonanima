@@ -36,6 +36,14 @@ def new_game():
     arrow.set_size(20, 20)
 
 
+def end_game():
+    global shade
+    shade = pygame.Surface((800, 550))
+    shade.fill(pygame.Color(50, 50, 50))
+    shade.set_alpha(100)
+    inter.update()
+
+
 class Heart(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__(main.all_sprites)
@@ -203,12 +211,13 @@ screen = pygame.display.set_mode(size)
 if __name__ == '__main__':
     menu = Menu()
     is_menu = True
+    is_end = False
 
     screen.fill(pygame.Color('white'))
     running = True
     while running:
         for event in pygame.event.get():
-            if not is_menu:
+            if not is_menu and not is_end:
                 if pygame.mouse.get_focused():
                     arrow.update(pygame.mouse.get_pos())
                     centrirovanye(game, arrow, hero, absolute_centre)
@@ -245,13 +254,19 @@ if __name__ == '__main__':
 
             if event.type == pygame.QUIT:
                 running = False
-
         if not is_menu:
-            inter.update()
-            hero.rotate()
-            game.render()
-            main.all_sprites.draw(screen)
-            crosshair.draw(screen)
+            if hero.health <= 0:
+                is_end = True
+                end_game()
+                main.all_sprites.draw(screen)
+                crosshair.draw(screen)
+                screen.blit(shade, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+            else:
+                inter.update()
+                hero.rotate()
+                game.render()
+                main.all_sprites.draw(screen)
+                crosshair.draw(screen)
         else:
             menu_sprites.draw(screen)
             screen.blit(menu.start_button.text, (menu.start_button.text_x, menu.start_button.text_y))

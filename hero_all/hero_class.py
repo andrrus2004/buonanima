@@ -81,5 +81,5 @@ class Hero(pygame.sprite.Sprite):
 
     def update(self):
         if self.health == 0:
-            print('game over')
+            pass
             # вызов функции интерфейса
