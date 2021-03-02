@@ -5,7 +5,7 @@ import main
 class Hero(pygame.sprite.Sprite):
     def __init__(self, *group):
         super().__init__(*group)
-        self.image = load_image("hero/gg.png", -1).convert()
+        self.image = load_image("hero/ded.png", -1).convert()
         colorkey = self.image.get_at((0, 0))
         self.image.set_colorkey(colorkey)
         self.rect = self.image.get_rect()
